@@ -1,11 +1,11 @@
 import { CreateRoomRequest } from './requests/createRoomRequest';
 import { requests } from './../../agent/agent';
-import { GetRoomsResponse } from './responses/getRoomsResponse';
+import { GetLandlordRoomsResponse } from './responses/getLandlordRoomsResponse';
 import { HttpStatusCodeResponse } from 'App/types/httpResponse';
 
 export const RoomApi = {
-    getRooms: (flatId: number): Promise<GetRoomsResponse> =>
-    requests.get(`/room/${flatId}`),
+    getRooms: (flatId: number): Promise<GetLandlordRoomsResponse> =>
+    requests.get(`/room/${flatId}/landlord`),
 
     createRoom: (body: CreateRoomRequest): Promise<HttpStatusCodeResponse> =>
     requests.post(`/room`, body),

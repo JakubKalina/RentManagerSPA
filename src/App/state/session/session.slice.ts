@@ -34,6 +34,7 @@ const sessionSlice = createSlice({
 			state.status.getUserDetails = SUCCESS;
 			state.user = action.payload;
 			state.error = null;
+			console.log(action);
 		},
 		getUserDetailsFailure: (state: SessionState, action: PayloadAction<string[]>) => {
 			state.status.getUserDetails = FAILED;

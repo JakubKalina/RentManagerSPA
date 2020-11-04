@@ -1,3 +1,12 @@
+import { TenancyApi } from './../endpoints/tenancy/tenancyApi';
+import { RoomApi } from './../endpoints/room/roomApi';
+import { ReviewApi } from './../endpoints/review/reviewApi';
+import { ReportApi } from './../endpoints/report/reportApi';
+import { MessageApi } from './../endpoints/message/messageApi';
+import { FlatInformationApi } from './../endpoints/flatInformation/flatInformationApi';
+import { FlatApi } from './../endpoints/flat/flatApi';
+import { DocumentApi } from './../endpoints/document/documentApi';
+import { AddressApi } from './../endpoints/address/addressApi';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 import { AccountApi } from '../endpoints/account/accountApi';
@@ -5,6 +14,7 @@ import { AdminApi } from '../endpoints/admin/adminApi';
 import { LogsApi } from '../endpoints/logs/logsApi';
 import { AuthApi } from '../endpoints/auth/authApi';
 import { baseURL } from './axios/configuration';
+import { PaymentApi } from '../endpoints/payment/paymentApi';
 
 const responseBodyAxios = (response: AxiosResponse) => {
 	if (response.data && 'data' in response.data && Object.keys(response.data).length === 1) {
@@ -50,5 +60,15 @@ export default {
 	Account: AccountApi,
 	Auth: AuthApi,
 	Logs: LogsApi,
-	Admin: AdminApi
+	Admin: AdminApi,
+	Address: AddressApi,
+	Document: DocumentApi,
+	Flat: FlatApi,
+	FlatInformation: FlatInformationApi,
+	Message: MessageApi,
+	Payment: PaymentApi,
+	Report: ReportApi,
+	Review: ReviewApi,
+	Room: RoomApi,
+	Tenancy: TenancyApi
 };

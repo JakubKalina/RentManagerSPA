@@ -1,11 +1,9 @@
-import { RoomForGetRoomsResponse } from "../../room/responses/getRoomsResponse";
-
 export interface GetFlatTenanciesResponse {
     id: number;
     startDate: Date;
     endDate: Date;
     deposit: number;
-    room: RoomForGetRoomsResponse;
+    room: RoomForGetFlatTenanciesResponse;
     user: UserForGetFlatTenanciesResponse;
 }
 

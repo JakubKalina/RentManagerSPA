@@ -1,10 +1,12 @@
-import { GetFlatsResponse } from './responses/getFlatsResponse';
-import { GetFlatsRequest } from './requests/getFlatsRequest';
+import { GetLandlordFlatsResponse } from './responses/getLandlordFlatsResponse';
+import { GetLandlordFlatsRequest } from './requests/getLandlordFlatsRequest';
 import { UpdateFlatRequest } from './requests/updateFlatRequest';
 import { CreateFlatRequest } from './requests/createFlatRequest';
 import { requests } from './../../agent/agent';
 import { HttpStatusCodeResponse } from 'App/types/httpResponse.d';
 import { GetFlatResponse } from './responses/getFlatResponse';
+import { GetTenantFlatsRequest } from './requests/getTenantFlatsRequest';
+import { GetTenantFlatsResponse } from './responses/getTenantFlatsResponse';
 
 export const FlatApi = {
     getFlat: (flatId: number): Promise<GetFlatResponse> =>
@@ -16,8 +18,11 @@ export const FlatApi = {
     updateFlat: (body: UpdateFlatRequest): Promise<HttpStatusCodeResponse> =>
     requests.put(`/flat`, body),
     
-    getFlats: (params: GetFlatsRequest) : Promise<GetFlatsResponse> => 
-    requests.get(`/flat`, params),
+    getLandlordFlats: (params: GetLandlordFlatsRequest) : Promise<GetLandlordFlatsResponse> => 
+    requests.get(`/flat/landlord`, params),
+
+    getTenantFlats: (params: GetTenantFlatsRequest) : Promise<GetTenantFlatsResponse> => 
+    requests.get(`/flat/tenant`, params),
 
     deleteFlat: (flatId: number): Promise<HttpStatusCodeResponse> =>
     requests.delete(`/flat/${flatId}`)

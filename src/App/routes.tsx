@@ -16,18 +16,25 @@ const Routes: React.FC = () => {
 			<Route exact path='/' component={HomePage} />
 			<Route exact path='/signin' component={LoginPage} />
 			<Route exact path='/reset-password' component={ResetPasswordPage} />
-			<ProtectedRoute
+			{/* <ProtectedRoute
 				path='/auth'
 				exact
 				component={AuthPage}
 				acceptedRoles={[Role.ADMIN]}
 				others={{ text: 'This is visible only for admins' }}
+			/> */}
+			<ProtectedRoute
+				path='/auth'
+				exact
+				component={AuthPage}
+				acceptedRoles={[Role.TENANT, Role.LANDLORD]}
 			/>
+
+
 			<ProtectedRoute
 				path='/user'
 				component={AuthPage}
 				acceptedRoles={[Role.ADMIN, Role.USER]}
-				others={{ text: 'This is visible for all logged in users' }}
 			/>
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} path='/admin' component={AdminPage} />
 			<Route path='/404' component={NotFoundPage} />
