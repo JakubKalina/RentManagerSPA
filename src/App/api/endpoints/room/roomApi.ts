@@ -4,7 +4,7 @@ import { GetLandlordRoomsResponse } from './responses/getLandlordRoomsResponse';
 import { HttpStatusCodeResponse } from 'App/types/httpResponse';
 
 export const RoomApi = {
-    getRooms: (flatId: number): Promise<GetLandlordRoomsResponse> =>
+    getLandlordRooms: (flatId: number): Promise<GetLandlordRoomsResponse> =>
     requests.get(`/room/${flatId}/landlord`),
 
     createRoom: (body: CreateRoomRequest): Promise<HttpStatusCodeResponse> =>
