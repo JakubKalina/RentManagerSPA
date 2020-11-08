@@ -1,6 +1,7 @@
 import { GetLandlordFlatsRequest } from './../../../api/endpoints/flat/requests/getLandlordFlatsRequest';
 import { StatusType } from 'App/types/requestStatus';
 import { FlatForGetLandlordFlatsResponse } from 'App/api/endpoints/flat/responses/getLandlordFlatsResponse';
+import defaultPageQueryParams from 'App/common/utils/defaultPageQueryParams';
 const { INITIAL } = StatusType;
 
 export interface LandlordFlatsState {
@@ -25,6 +26,6 @@ export const landlordFlatsInitialState: LandlordFlatsState = {
     },
     error: null,
     flats: [],
-    getFlatsParams: null,
+    getFlatsParams: defaultPageQueryParams,
     getFlatsTotalPages: 0
 };

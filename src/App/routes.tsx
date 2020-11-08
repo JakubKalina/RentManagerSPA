@@ -19,6 +19,9 @@ import { default as TenantPageFlats } from './pages/TenantPage/flats/TenantPageF
 import { default as AdminPageFlats } from './pages/AdminPage/flats/AdminPageFlatsContainer';
 import { default as AdminPageTenants } from './pages/AdminPage/tenants/AdminPageTenantsContainer';
 import { default as AdminPageLandlords } from './pages/AdminPage/landlords/AdminPageLandlordsContainer';
+import { default as ProfilePageUpdate } from './pages/ProfilePage/containers/ProfilePageUpdateProfileContainer';
+import { default as ProfilePageChangePassword } from './pages/ProfilePage/containers/ProfilePageChangePasswordContainer';
+
 
 
 
@@ -50,6 +53,17 @@ const Routes: React.FC = () => {
 				acceptedRoles={[Role.ADMIN, Role.LANDLORD, Role.TENANT]}
 			/>
 
+			
+			<ProtectedRoute 
+				acceptedRoles={[Role.TENANT, Role.LANDLORD, Role.ADMIN]}
+				exact path='/profile/update'
+				component={ProfilePageUpdate} />
+
+			<ProtectedRoute
+			 	acceptedRoles={[Role.TENANT, Role.LANDLORD, Role.ADMIN]}
+				exact path='/profile/change-password' 
+				component={ProfilePageChangePassword} />
+
 			{/* Messages routes */}
 			{/* <ProtectedRoute
 				path='/messages'
@@ -75,8 +89,15 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/search' component={SearchPage} />
 			
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/profile' component={ProfilePage} />
+{/* 
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/profile/update' component={ProfilePageUpdate} />
+
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/profile/change-password' component={ProfilePageChangePassword} /> */}
 			
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/reports' component={ReportsPage} />
+			
+			{/* Dokończyć poniższe */}
+			{/* <ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats/:flatId' component={LandlordPageRooms} /> */}
 
 
 
@@ -88,6 +109,10 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/search' component={SearchPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/profile' component={ProfilePage} />
+
+			{/* <ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/profile/update' component={ProfilePageUpdate} />
+
+			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/profile/change-password' component={ProfilePageChangePassword} /> */}
 			
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/reports' component={ReportsPage} />
 
@@ -102,6 +127,10 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/search' component={SearchPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/profile' component={ProfilePage} />
+
+			{/* <ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/profile/update' component={ProfilePageUpdate} />
+
+			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/profile/change-password' component={ProfilePageChangePassword} /> */}
 
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/flats' component={AdminPageFlats} />
 

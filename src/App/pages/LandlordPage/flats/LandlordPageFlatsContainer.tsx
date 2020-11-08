@@ -1,14 +1,12 @@
 import React from "react";
+import LandlordPageGetFlatsContainer from "./containers/LandlordPageGetFlatsContainer";
 
 const LandlordPageFlatsContainer: React.FC<{}> = () => {
     // const Content = (
 
     // );
     return (
-        <div>
-            <h1>Mieszkania zarządcy</h1>
-            
-        </div>
+        <LandlordPageGetFlatsContainer/>
     );
 };
 
