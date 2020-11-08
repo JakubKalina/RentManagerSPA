@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Store } from "antd/lib/form/interface";
 import { RootState } from "App/state/root.reducer";
 import { RegisterRequest } from "App/api/endpoints/auth/requests";
-import { authenticateUser } from "App/state/session/session.thunk";
+import { authenticateUser, registerUser } from "App/state/session/session.thunk";
 import LoadingScreen from "App/common/components/LoadingScreen";
 import { Row, Col, Alert, PageHeader } from "antd";
 import StatusType from "App/types/requestStatus";
@@ -12,9 +12,7 @@ import { useHistory } from "react-router";
 
 const RegisterPageContainer: React.FC<{}> = () => {
 
-
 	type FinishFormType = (values: Store) => void;
-
 
 	const dispatch = useDispatch();
 	const [registerError, setRegisterError] = useState<string[] | boolean>(false);
@@ -33,21 +31,28 @@ const RegisterPageContainer: React.FC<{}> = () => {
 
 		setRegisterError(false);
 
+		let rolesArray = [];
+		// if(values.roles.includes('Landlord')) {
+		// 	rolesArray.push("Landlord");
+		// } else if(values.roles.includes('Tenant')) {
+		// 	rolesArray.push("Tenant");
+		// }
+
 		dispatch(
-
-            /// utworzyć thunka wykonującego rejestrację użytkownika
-
-
-
-
-			// authenticateUser(
-			// 	{
-			// 		password: values.password,
-			// 		email: values.email
-			// 	},
-			// 	handleSuccess,
-			// 	handleError
-			// )
+			registerUser(
+				{
+					firstName: values.firstName,
+					lastName: values.lastName,
+					email: values.email,
+					password: values.password,
+					confirmPassword: values.confirmPassword,
+					roles: [values.role],
+					language: "pl"
+				},
+				handleSuccess,
+				handleError
+				
+			)
 		);
 	};
 

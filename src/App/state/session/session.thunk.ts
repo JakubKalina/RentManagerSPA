@@ -1,4 +1,3 @@
-import { AppThunk } from '../store';
 import {
 	authenticationStart,
 	authenticationSuccess,
@@ -9,12 +8,16 @@ import {
 	devalidateSessionStart,
 	devalidateSessionSuccess,
 	devalidateSessionFailure,
-	cleanUpSessionStatusStart
+	cleanUpSessionStatusStart,
+	registerUserStart,
+	registerUserSuccess,
+	registerUserFailure
 } from './session.slice';
-import { LoginRequest } from 'App/api/endpoints/auth/requests';
+import { LoginRequest, RegisterRequest } from 'App/api/endpoints/auth/requests';
 import agent from 'App/api/agent/agent';
 import { LoginResponse } from 'App/api/endpoints/auth/responses';
 import { GetAccountDetailsResponse } from 'App/api/endpoints/account/responses';
+import { AppThunk } from '../store';
 
 export const authenticateUser = (
 	payload?: LoginRequest,
@@ -36,7 +39,7 @@ export const authenticateUser = (
 				});
 		})
 		.catch(() => {
-			const err = ['Provided credentials are incorrect'];
+			const err = ['Wprowadzono niepoprawne dane'];
 			onError(err);
 			dispatch(authenticationFailure(err));
 		});
@@ -53,6 +56,23 @@ export const devalidateSession = (onSuccess?: () => void): AppThunk => async (di
 	} catch (error) {
 		dispatch(devalidateSessionFailure(error));
 	}
+};
+
+
+export const registerUser = (userToRegister: RegisterRequest, onSuccess?: () => void, onError?: (error: string[]) => void): AppThunk => async (dispatch) => {
+	dispatch(registerUserStart());
+	agent.Auth.register(userToRegister)
+		.then((response) => {
+			dispatch(registerUserSuccess(response));
+			onSuccess();
+		})
+		.catch((error) => 
+		{			
+			const err = ['Wprowadzono niepoprawne dane'];
+			onError(err);
+			dispatch(registerUserFailure(error));
+
+		});
 };
 
 export const cleanUpSessionStatus = (): AppThunk => async (dispatch) => {

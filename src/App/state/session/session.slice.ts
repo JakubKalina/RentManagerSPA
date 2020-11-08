@@ -1,3 +1,4 @@
+import { RegisterResponse } from './../../api/endpoints/auth/responses/registerResponse.d';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { sessionInitialState, SessionState } from './session.state';
@@ -11,6 +12,26 @@ const sessionSlice = createSlice({
 	name: 'session',
 	initialState: sessionInitialState,
 	reducers: {
+
+
+		
+		registerUserStart: (state: SessionState) => {
+			state.status.authentication = LOADING;
+		},
+		registerUserSuccess: (state: SessionState, action: PayloadAction<RegisterResponse>) => {
+			state.status.authentication = SUCCESS;
+			state.info = action.payload;
+
+			localStorage.setItem('token', action.payload.token);
+		},
+		registerUserFailure: (state: SessionState, action: PayloadAction<string[]> ) => {
+			state.status.authentication = FAILED;
+		},
+
+
+
+
+
 		authenticationStart: (state: SessionState) => {
 			state.status.authentication = LOADING;
 		},
@@ -57,6 +78,7 @@ const sessionSlice = createSlice({
 			localStorage.removeItem('token');
 		},
 
+
 		cleanUpSessionStatusStart: (state: SessionState) => {
 			state.status = sessionInitialState.status;
 			state.error = sessionInitialState.error;
@@ -67,6 +89,9 @@ const sessionSlice = createSlice({
 export default sessionSlice;
 
 export const {
+	registerUserStart,
+	registerUserSuccess,
+	registerUserFailure,
 	authenticationStart,
 	authenticationSuccess,
 	authenticationFailure,

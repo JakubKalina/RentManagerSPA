@@ -52,9 +52,9 @@ const RegisterForm: React.FC<RegisterFormProps> = (props: RegisterFormProps) => 
 
             {/* Rola */}
             <Form.Item name='role' rules={registerFormRules.password}>
-            <Radio.Group defaultValue="tenant" buttonStyle="outline" size="large">
-                <Radio.Button value="tenant">Najemca</Radio.Button>
-                <Radio.Button value="landlord">Zarządca</Radio.Button>
+            <Radio.Group buttonStyle="outline" size="large">
+                <Radio.Button value="Tenant">Najemca</Radio.Button>
+                <Radio.Button value="Landlord">Zarządca</Radio.Button>
             </Radio.Group>
 			</Form.Item>
 
