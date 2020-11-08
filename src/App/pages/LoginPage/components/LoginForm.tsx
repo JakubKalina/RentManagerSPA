@@ -14,26 +14,26 @@ const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
 	return (
 		<Form {...props}>
 			<Form.Item name='email' rules={loginFormRules.email}>
-				<Input prefix={<UserOutlined className='site-form-item-icon' />} placeholder='Email' />
+				<Input prefix={<UserOutlined className='site-form-item-icon' />} placeholder='Adres Email' />
 			</Form.Item>
 			<Form.Item name='password' rules={loginFormRules.password}>
 				<Input
 					prefix={<LockOutlined className='site-form-item-icon' />}
 					type='password'
-					placeholder='Password'
+					placeholder='Hasło'
 				/>
 			</Form.Item>
 			<Form.Item>
 				<Form.Item name='remember' valuePropName='checked' noStyle>
-					<Checkbox>{t('LoginForm.RememberMe')}</Checkbox>
+					<Checkbox>{'Zapamiętaj mnie'}</Checkbox>
 				</Form.Item>
 				<a className='login-form-forgot f-right' href='#href-id' id='href-id'>
-					{t('LoginForm.ForgotPassword')}
+					{'Zapomniałem hasła'}
 				</a>
 			</Form.Item>
 			<Form.Item>
 				<Button className='f-left login-form-button' type='primary' htmlType='submit' size='large'>
-					{t('LoginForm.SignIn')}
+					{'Zaloguj'}
 				</Button>
 			</Form.Item>
 		</Form>

@@ -1,67 +1,150 @@
 import React from 'react';
-import { Menu } from 'antd';
-import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Menu, Tabs, Button } from 'antd';
+import { Link, useLocation, RouteChildrenProps, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'App/state/root.reducer';
 
 import './NavbarContainer.less';
 import { useTranslation } from 'react-i18next';
-import { stat } from 'fs';
+import SubMenu from 'antd/lib/menu/SubMenu';
+import { devalidateSession } from 'App/state/session/session.thunk';
+
+const { TabPane } = Tabs;
+
+type MouseClickEvent = (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+
 
 const NavbarContainer: React.FC<{}> = () => {
+
 	// const userIsLoggedIn = useSelector<RootState>(
-	// 	(state: RootState) => !!(state.session.info && state.session.info.token && state.session.user.roles)
+	// 	(state: RootState) => !!(state.session.info && state.session.info.token)
 	// );
+	const history = useHistory();
 
-	const userIsLoggedIn = useSelector<RootState>(
-		(state: RootState) => !!(state.session.info && state.session.info.token)
-	);
 
-	const userRoles = useSelector(
+	const userRole = useSelector<RootState>(
 		(state: RootState) => {
 			let currentRole = state.session.user && state.session.user.roles
 			if(currentRole && currentRole.length > 0)
 			{
 				 return currentRole[0];
 			} else return null;
-
 		}
 	);
-
-	// const [currentRole] = useSelector(
-	// 	(state: RootState) => state.session.user.roles
-	// );
 	
+	const dispatch = useDispatch();
+	
+	const handleLogOutButtonClick: MouseClickEvent = () => {
+		dispatch(
+			devalidateSession(() => {
+				history.push('/');
+			})
+		);
+	};
 
-	const {t} = useTranslation();
 
 	const location = useLocation();
-	if (userIsLoggedIn) {
-		return (
-			<Menu mode='horizontal' defaultSelectedKeys={[location.pathname]} className='menu-padding'>
-				<Menu.Item key='/auth'>
-		<Link to='/auth'>Auth(wylogowywanie) {userRoles}</Link>
-				</Menu.Item>
-				<Menu.Item key='/user'>
-					<Link to='/user'>UserAuth(wylogowywanie)</Link>
-				</Menu.Item>
-				<Menu.Item key='/admin/users'>
-					<Link to='/admin/users'>{t('NavbarContainer.Admin')}</Link>
-				</Menu.Item>
-			</Menu>
-		);
-	} else {
-		return (
+
+
+		if(userRole === 'Landlord')
+		{
+			return (
+				<Menu mode='horizontal' defaultSelectedKeys={[location.pathname]} className='menu-padding'>
+					<Menu.Item key='/'>
+						<Link to='/'>Home</Link>
+					</Menu.Item>
+					<Menu.Item key='/landlord/search'>
+						<Link to='/landlord/search'>Znajdź użytkownika</Link>
+					</Menu.Item>
+					<Menu.Item key='/landlord/flats'>
+						<Link to='/landlord/flats'>Moje mieszkania</Link>
+					</Menu.Item>
+					<Menu.Item key='/landlord/messages'>
+						<Link to='/landlord/messages'>Wiadomości</Link>
+					</Menu.Item>
+					<Menu.Item key='/landlord/reports'>
+						<Link to='/landlord/reports'>Aktualności</Link>
+					</Menu.Item>
+					<Menu.Item key='/landlord/profile'>
+						<Link to='/landlord/profile'>Profil</Link>
+					</Menu.Item>
+					<Menu.Item>
+						<Button onClick={handleLogOutButtonClick}>Wyloguj</Button>
+					</Menu.Item>
+				</Menu>
+			);
+		} else if( userRole === 'Administrator'){
+			return (
+				<Menu mode='horizontal' defaultSelectedKeys={[location.pathname]} className='menu-padding'>
+					<Menu.Item key='/'>
+						<Link to='/'>Home</Link>
+					</Menu.Item>
+					<Menu.Item key='/admin/flats'>
+						<Link to='/admin/flats'>Mieszkania</Link>
+					</Menu.Item>
+					<Menu.Item key='/admin/landlords'>
+						<Link to='/admin/landlords'>Zarządcy</Link>
+					</Menu.Item>
+					<Menu.Item key='/admin/tenants'>
+						<Link to='/admin/tenants'>Najemcy</Link>
+					</Menu.Item>
+					<Menu.Item key='/admin/search'>
+						<Link to='/admin/search'>Znajdź użytkownika</Link>
+					</Menu.Item>
+					<Menu.Item key='/admin/messages'>
+						<Link to='/admin/messages'>Wiadomości</Link>
+					</Menu.Item>
+					<Menu.Item key='/admin/profile'>
+						<Link to='/admin/profile'>Profil</Link>
+					</Menu.Item>
+					<Menu.Item>
+						<Button onClick={handleLogOutButtonClick}>Wyloguj</Button>
+					</Menu.Item>
+				</Menu>
+			);
+		} else if( userRole === 'Tenant') {
+			return (
+				<Menu mode='horizontal' defaultSelectedKeys={[location.pathname]} className='menu-padding'>
+					<Menu.Item key='/'>
+						<Link to='/'>Home</Link>
+					</Menu.Item>
+					<Menu.Item key='/tenant/search'>
+						<Link to='/tenant/search'>Znajdź użytkownika</Link>
+					</Menu.Item>
+					<Menu.Item key='/tenant/flats'>
+						<Link to='/tenant/flats'>Moje mieszkania</Link>
+					</Menu.Item>
+					<Menu.Item key='/tenant/messages'>
+						<Link to='/tenant/messages'>Wiadomości</Link>
+					</Menu.Item>
+					<Menu.Item key='/tenant/reports'>
+						<Link to='/tenant/reports'>Aktualności</Link>
+					</Menu.Item>
+					<Menu.Item key='/tenant/profile'>
+						<Link to='/tenant/profile'>Profil</Link>
+					</Menu.Item>
+					<Menu.Item>
+						<Button onClick={handleLogOutButtonClick}>Wyloguj</Button>
+					</Menu.Item>
+				</Menu>
+			);
+		} else {
+					return (
 			<Menu mode='horizontal' defaultSelectedKeys={[location.pathname]} className='menu-padding'>
 				<Menu.Item key='/'>
-				<Link to='/'>{t('NavbarContainer.Home')}</Link>
+				<Link to='/'>Strona główna</Link>
 				</Menu.Item>
 				<Menu.Item key='/signin'>
-				<Link to='/signin'>{t('NavbarContainer.SignIn')}</Link>
+				<Link to='/signin'>Logowanie</Link>
+				</Menu.Item>
+				<Menu.Item key='/signup'>
+				<Link to='/signup'>Rejestracja</Link>
 				</Menu.Item>
 			</Menu>
-		);
-	}
+			);
+		}
+
+
 };
 
 export default NavbarContainer;

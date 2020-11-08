@@ -11,12 +11,12 @@ const NotFoundPageContainer: React.FC<NotFoundPageContainerProps> = ({ history }
 
 	return (
 		<Result
-			status='404'
+			status="warning"
 			title='404'
-			subTitle={t('NotFoundPageContainer.WeAreSorry')}
+			subTitle={'Niestety, nie udało się znaleźć tej strony'}
 			extra={
 				<Button type='primary' onClick={buttonGoBackHomeOnClick}>
-					{t('Buttons.BackToHome')}
+					{'Wróć do strony głównej'}
 				</Button>
 			}
 		></Result>

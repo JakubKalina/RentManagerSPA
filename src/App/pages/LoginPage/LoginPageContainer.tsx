@@ -13,6 +13,7 @@ import { RootState } from 'App/state/root.reducer';
 import LoadingScreen from 'App/common/components/LoadingScreen';
 import StatusType from 'App/types/requestStatus';
 import { useTranslation } from 'react-i18next';
+import store from 'App/state/store';
 
 interface LoginPageContainerProps extends RouteChildrenProps {
 	name?: string;
@@ -27,6 +28,7 @@ const LoginPageContainer: React.FC<LoginPageContainerProps> = ({ history }: Logi
 	const [loginError, setLoginError] = useState<string[] | boolean>(false);
 	const status = useSelector((state: RootState) => state.session.status.authentication);
 
+	
 	const formInitialValues = {
 		email: 'kalinakuba6@gmail.com',
 		password: 'Pass123!'
@@ -34,7 +36,7 @@ const LoginPageContainer: React.FC<LoginPageContainerProps> = ({ history }: Logi
 
 	const signInHandler: FinishFormType = (values: LoginRequest) => {
 		let handleSuccess: () => void = () => {
-			history.push('/auth');
+			history.push('/');
 		};
 
 		let handleError: (errorMessages: string[]) => void = (errors: string[]) => {
@@ -73,7 +75,7 @@ const LoginPageContainer: React.FC<LoginPageContainerProps> = ({ history }: Logi
 								className='w-100'
 							/>
 						)}
-						<PageHeader title={t('LoginPageContainer.SignIn')} />
+						<PageHeader title={'Zaloguj się'} />
 						<LoginForm
 							className='login-form'
 							name='loginForm'

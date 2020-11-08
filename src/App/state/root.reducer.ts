@@ -1,3 +1,5 @@
+import { landlordRoomsSlice } from './landlord/rooms/rooms.slice';
+import { landlordFlatsSlice } from './landlord/flats/flats.slice';
 import { combineReducers } from '@reduxjs/toolkit';
 
 import adminLogsSlice from './admin/logs/logs.slice';
@@ -10,7 +12,11 @@ const rootReducer = combineReducers({
 		users: adminUsersSlice.reducer,
 		logs: adminLogsSlice.reducer
 	}),
-	session: sessionSlice.reducer
+	session: sessionSlice.reducer,
+	landlord: combineReducers({
+		flats: landlordFlatsSlice.reducer,
+		rooms: landlordRoomsSlice.reducer
+	})
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
