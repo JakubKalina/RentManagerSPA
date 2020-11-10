@@ -4,7 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import './ProfilePageContainer.less';
 import { UserOutlined } from "@ant-design/icons";
 import { devalidateSession } from "App/state/session/session.thunk";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "App/state/root.reducer";
 
 
 type MouseClickEvent = (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
@@ -12,8 +13,11 @@ type MouseClickEvent = (event: React.MouseEvent<HTMLElement, MouseEvent>) => voi
 
 const ProfilePageContainer: React.FC<{}> = () => {
 
+    const user = useSelector((state: RootState) => state.session.user);
+    const userStatus = useSelector((state: RootState) => state.session.status);
+
 	const history = useHistory();
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
 
     const handleLogOutButtonClick: MouseClickEvent = () => {
@@ -40,31 +44,31 @@ const ProfilePageContainer: React.FC<{}> = () => {
 					</Card.Grid>
 
                     <Card.Grid hoverable={false} style={{width: '100%', textAlign: "center"}}>
-                    <Tag.CheckableTag checked={true} >Landlord</Tag.CheckableTag>
+                        <Tag.CheckableTag checked={true} style={{marginBottom: "10px"}} >{user?user.roles[0]:""}</Tag.CheckableTag>
 
                     <Form {...layout}>
 
-    `                   <Form.Item
+                        <Form.Item
                             label="Imię"
                         >
-                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue="Jan" />
+                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue={user?user.firstName:""} />
                         </Form.Item>
 
                         <Form.Item
                             label="Nazwisko"                        >
-                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue="Kowalski" />
+                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue={user?user.lastName:""} />
                         </Form.Item>
 
                         <Form.Item
                             label="Adres email"
                         >
-                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue="kowalski@jan.com" />
+                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue={user?user.email:""} />
                         </Form.Item>
 
                         <Form.Item
                             label="Numer telefonu"
                         >
-                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue="456 981 045" />
+                            <Input disabled={true} style={{cursor: "pointer"}} defaultValue={user?user.phoneNumber:""} />
                         </Form.Item>
 
                     </Form>

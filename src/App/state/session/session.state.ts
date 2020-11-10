@@ -8,6 +8,8 @@ export interface SessionState {
 	status: {
 		authentication: StatusType;
 		getUserDetails: StatusType;
+		updateUserDetails: StatusType;
+		changePassword: StatusType;
 		registerUser: StatusType;
 		devalidateSession: StatusType;
 	};
@@ -21,6 +23,8 @@ export const sessionInitialState: SessionState = {
 	status: {
 		authentication: INITIAL,
 		getUserDetails: INITIAL,
+		updateUserDetails: INITIAL,
+		changePassword: INITIAL,
 		registerUser: INITIAL,
 		devalidateSession: INITIAL,
 	},

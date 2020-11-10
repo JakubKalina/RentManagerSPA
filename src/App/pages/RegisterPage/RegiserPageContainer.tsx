@@ -22,7 +22,7 @@ const RegisterPageContainer: React.FC<{}> = () => {
 
 	const signUpHandler: FinishFormType = (values: RegisterRequest) => {
 		let handleSuccess: () => void = () => {
-			history.push('/');
+			history.push('/profile');
 		};
 
 		let handleError: (errorMessages: string[]) => void = (errors: string[]) => {
@@ -30,13 +30,6 @@ const RegisterPageContainer: React.FC<{}> = () => {
 		};
 
 		setRegisterError(false);
-
-		let rolesArray = [];
-		// if(values.roles.includes('Landlord')) {
-		// 	rolesArray.push("Landlord");
-		// } else if(values.roles.includes('Tenant')) {
-		// 	rolesArray.push("Tenant");
-		// }
 
 		dispatch(
 			registerUser(

@@ -1,3 +1,4 @@
+import { UpdateUserResponse } from './../../api/endpoints/admin/responses/updateUserResponse.d';
 import { RegisterResponse } from './../../api/endpoints/auth/responses/registerResponse.d';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
@@ -13,8 +14,34 @@ const sessionSlice = createSlice({
 	initialState: sessionInitialState,
 	reducers: {
 
+		changePasswordStart: (state: SessionState) => {
+			state.status.changePassword = LOADING;
+		},
+		changePasswordSuccess: (state: SessionState) => {
+			state.status.changePassword = SUCCESS;
+		},
+		changePasswordFailure: (state: SessionState, action: PayloadAction<string[]>) => {
+			state.status.changePassword = FAILED;
+			state.error = action.payload;
+		},
 
-		
+
+
+
+		updateUserDetailsStart: (state: SessionState) => {
+			state.status.updateUserDetails = LOADING;
+		},
+		updateUserDetailsSuccess: (state: SessionState, action: PayloadAction<UpdateUserResponse>) => {
+			state.status.updateUserDetails = SUCCESS;
+			state.user = action.payload;
+			state.error = null;
+		},
+		updateUserDetailsFailure: (state: SessionState, action: PayloadAction<string[]>) => {
+			state.status.updateUserDetails = FAILED;
+			state.error = action.payload;
+		},
+
+
 		registerUserStart: (state: SessionState) => {
 			state.status.authentication = LOADING;
 		},
@@ -27,8 +54,6 @@ const sessionSlice = createSlice({
 		registerUserFailure: (state: SessionState, action: PayloadAction<string[]> ) => {
 			state.status.authentication = FAILED;
 		},
-
-
 
 
 
@@ -61,6 +86,8 @@ const sessionSlice = createSlice({
 			state.status.getUserDetails = FAILED;
 			state.error = action.payload;
 		},
+
+
 		devalidateSessionStart: (state: SessionState) => {
 			state.status.devalidateSession = LOADING;
 		},
@@ -89,6 +116,9 @@ const sessionSlice = createSlice({
 export default sessionSlice;
 
 export const {
+	changePasswordStart,
+	changePasswordSuccess,
+	changePasswordFailure,
 	registerUserStart,
 	registerUserSuccess,
 	registerUserFailure,
@@ -101,6 +131,9 @@ export const {
 	devalidateSessionFailure,
 	devalidateSessionStart,
 	devalidateSessionSuccess,
+	updateUserDetailsStart,
+	updateUserDetailsSuccess,
+	updateUserDetailsFailure,
 
 	cleanUpSessionStatusStart
 } = sessionSlice.actions;

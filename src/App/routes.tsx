@@ -56,6 +56,11 @@ const Routes: React.FC = () => {
 			
 			<ProtectedRoute 
 				acceptedRoles={[Role.TENANT, Role.LANDLORD, Role.ADMIN]}
+				exact path='/profile'
+				component={ProfilePage} />
+
+			<ProtectedRoute 
+				acceptedRoles={[Role.TENANT, Role.LANDLORD, Role.ADMIN]}
 				exact path='/profile/update'
 				component={ProfilePageUpdate} />
 
