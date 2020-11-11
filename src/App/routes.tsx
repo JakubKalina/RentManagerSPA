@@ -69,22 +69,8 @@ const Routes: React.FC = () => {
 				exact path='/profile/change-password' 
 				component={ProfilePageChangePassword} />
 
-			{/* Messages routes */}
-			{/* <ProtectedRoute
-				path='/messages'
-				exact
-				component={MessagePage}
-				acceptedRoles={[Role.ADMIN, Role.LANDLORD, Role.TENANT]}
-			/> */}
 
 
-
-			{/* <ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant' component={TenantPage} />
-
-			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord' component={LandlordPage} />
-
-			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin' component={AdminPage} /> */}
-		
 
 			{/* Landlord routes */}
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats' component={LandlordPageFlats} />

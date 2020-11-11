@@ -12,7 +12,6 @@ import { authenticateUser } from 'App/state/session/session.thunk';
 import { RootState } from 'App/state/root.reducer';
 import LoadingScreen from 'App/common/components/LoadingScreen';
 import StatusType from 'App/types/requestStatus';
-import { useTranslation } from 'react-i18next';
 import store from 'App/state/store';
 
 interface LoginPageContainerProps extends RouteChildrenProps {
@@ -22,17 +21,29 @@ interface LoginPageContainerProps extends RouteChildrenProps {
 const LoginPageContainer: React.FC<LoginPageContainerProps> = ({ history }: LoginPageContainerProps) => {
 	type FinishFormType = (values: Store) => void;
 
-	const {t} = useTranslation();
-
 	const dispatch = useDispatch();
 	const [loginError, setLoginError] = useState<string[] | boolean>(false);
 	const status = useSelector((state: RootState) => state.session.status.authentication);
 
-	
+
+
+
+
+
+
+
+	// Do usunięcia
 	const formInitialValues = {
 		email: 'kalinakuba6@gmail.com',
 		password: 'Pass123!'
 	};
+
+
+
+	
+
+
+	
 
 	const signInHandler: FinishFormType = (values: LoginRequest) => {
 		let handleSuccess: () => void = () => {

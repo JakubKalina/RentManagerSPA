@@ -11,10 +11,16 @@ import { GetAccountDetailsResponse, UpdateAccountDetailsResponse } from './respo
 
 import appConfig from 'app.config';
 import { HttpStatusCodeResponse } from 'App/types/httpResponse.d';
+import { GetUsersRequest } from './requests/getUsersRequest';
+import { GetUsersResponse } from './responses/getUsersResponse';
 
 const { urlToIncludeInEmail } = appConfig;
 
 export const AccountApi = {
+
+	getUsers: (body: GetUsersRequest): Promise<GetUsersResponse> =>
+		requests.get(`/account/users`, body),
+
 	getAccountDetails: (): Promise<GetAccountDetailsResponse> => requests.get(`/account/details`),
 
 	updateProfile: (body: UpdateProfileRequest): Promise<UpdateAccountDetailsResponse> =>

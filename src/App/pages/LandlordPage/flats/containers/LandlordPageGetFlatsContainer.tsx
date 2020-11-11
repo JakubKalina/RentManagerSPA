@@ -69,7 +69,7 @@ const LandlordPageGetFlatsContainer: React.FC<{}> = () => {
 			</Row>
 			<Row className='overflow-hidden'>
 				<Col span={24}>
-					<Input
+					{/* <Input
 						allowClear
 						onChange={(val) =>
 							dispatch(
@@ -79,7 +79,7 @@ const LandlordPageGetFlatsContainer: React.FC<{}> = () => {
 								})
 							)
 						}
-					/>
+					/> */}
 					<Table
 						pagination={paginationConfig}
 						onChange={handleTableChange}
