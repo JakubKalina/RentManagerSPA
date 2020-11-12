@@ -74,16 +74,14 @@ const Routes: React.FC = () => {
 
 			{/* Landlord routes */}
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats' component={LandlordPageFlats} />
+
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats' component={LandlordPageFlats} />
 			
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/messages' component={MessagePage} />
 
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/search' component={SearchPage} />
 			
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/profile' component={ProfilePage} />
-{/* 
-			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/profile/update' component={ProfilePageUpdate} />
-
-			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/profile/change-password' component={ProfilePageChangePassword} /> */}
 			
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/reports' component={ReportsPage} />
 			

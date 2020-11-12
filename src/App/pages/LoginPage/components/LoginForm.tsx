@@ -23,14 +23,7 @@ const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
 					placeholder='Hasło'
 				/>
 			</Form.Item>
-			<Form.Item>
-				<Form.Item name='remember' valuePropName='checked' noStyle>
-					<Checkbox>{'Zapamiętaj mnie'}</Checkbox>
-				</Form.Item>
-				<a className='login-form-forgot f-right' href='#href-id' id='href-id'>
-					{'Zapomniałem hasła'}
-				</a>
-			</Form.Item>
+ 
 			<Form.Item>
 				<Button className='f-left login-form-button' type='primary' htmlType='submit' size='large'>
 					{'Zaloguj'}

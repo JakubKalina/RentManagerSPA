@@ -11,7 +11,9 @@ import { Store } from "antd/lib/form/interface";
 import { GetUsersRequest } from "App/api/endpoints/account/requests/getUsersRequest";
 import { getUsers } from "App/state/users/users.thunk";
 import defaultPageQueryParams from "App/common/utils/defaultPageQueryParams";
-import { renderTableColumns } from "./utils/UsersTable";
+import { renderTableColumnsForLandlord } from "./utils/UsersTableForLandlord";
+import { renderTableColumnsForTenant } from "./utils/UsersTableForTenant";
+import { renderTableColumnsForAdmin } from "./utils/UsersTableForAdmin";
 
 
 const { LOADING, SUCCESS } = StatusType;
@@ -49,8 +51,6 @@ const SearchPageContainer: React.FC<{}> = () => {
     );
 
     
-
-
     const searchUsersHandler: FinishFormType = (values: GetUsersRequest) => {
 
         setSearchError(false);
@@ -114,48 +114,48 @@ const SearchPageContainer: React.FC<{}> = () => {
 			}
 		    </div>
             <div>
-                {searchQuery == '' ?<p></p>:
-                	<Table
+                  
+                {(userRole == 'Landlord') && (searchQuery != '') ?                    
+                     <Table
                     pagination={paginationConfig}
                     onChange={handleTableChange}
                     loading={usersStatus.getUsers === LOADING}
-                    columns={renderTableColumns(users, dispatch)}
+                    columns={renderTableColumnsForLandlord(users, dispatch)}
                     dataSource={users}
                     rowKey='id'
-                    />
+                    />:
+                    null
+                
                 }
+
+                {(userRole == 'Tenant') && (searchQuery != '') ?
+                    <Table
+                    pagination={paginationConfig}
+                    onChange={handleTableChange}
+                    loading={usersStatus.getUsers === LOADING}
+                    columns={renderTableColumnsForTenant(users, dispatch)}
+                    dataSource={users}
+                    rowKey='id'
+                    />:
+                    null
+                }
+
+                {(userRole === 'Administrator') && (searchQuery != '') ? 
+                    <Table
+                    pagination={paginationConfig}
+                    onChange={handleTableChange}
+                    loading={usersStatus.getUsers === LOADING}
+                    columns={renderTableColumnsForAdmin(users, dispatch)}
+                    dataSource={users}
+                    rowKey='id'
+                    />:
+                    null
+                }
+
             </div>
         </div>
 
     );
-
-
-
-    // if(userRole === 'Landlord')
-    // {
-    //     return (
-    //         <div>
-    //             Wyszukiwarka zarządcy
-    //         </div>
-
-    //     );
-    // } else if( userRole === 'Administrator'){
-    //     return (
-    //         <div>
-    //             Wyszukiwarka admina
-    //         </div>
-    //     );
-    // } else if( userRole === 'Tenant') {
-    //     return (
-    //         <div>
-    //             Wyszukiwarka najemcy
-    //         </div>
-    //     );
-    // } else {
-    //             return (
-    //                 <div></div>
-    //     );
-    // }
 
 };
 

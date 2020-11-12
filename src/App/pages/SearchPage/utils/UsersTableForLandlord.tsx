@@ -9,7 +9,7 @@ import { FlatForGetLandlordFlatsResponse } from 'App/api/endpoints/flat/response
 import { deleteFlat } from 'App/state/landlord/flats/flats.thunk';
 import { UserForGetUsersResponse } from 'App/api/endpoints/account/responses/getUsersResponse';
 
-export const renderTableColumns = (users: UserForGetUsersResponse[], dispatch: Dispatch<any>) => [
+export const renderTableColumnsForLandlord = (users: UserForGetUsersResponse[], dispatch: Dispatch<any>) => [
 
 	{ title: 'Imię', dataIndex: 'firstName' },
     { title: 'Nazwisko', dataIndex: 'lastName' },
@@ -43,12 +43,17 @@ const menuForActionDropdown = (
 	<Menu>
 		<Menu.Item>
 			<Button type='link'>
-				<Link to={`/landlord/flats/${record.id}/update`}>Edycja</Link>
+				<Link to={`/landlord/flats/${record.id}/update`}>Sprawdź opinie</Link>
 			</Button>
 		</Menu.Item>
 		<Menu.Item>
 			<Button type='link'>
-				Usuń
+				Napisz wiadomość
+			</Button>
+		</Menu.Item>
+        <Menu.Item>
+			<Button type='link'>
+				Dodaj do mieszkania
 			</Button>
 		</Menu.Item>
 	</Menu>

@@ -12,11 +12,18 @@ export const getFlats = (params: GetLandlordFlatsRequest): AppThunk => async (di
         .catch((error) => dispatch(getFlatsFailure(error)));
 };
 
-export const createFlat = (flatToCreate: CreateFlatRequest): AppThunk => async (dispatch) => {
+export const createFlat = (flatToCreate: CreateFlatRequest, onSuccess?: () => void, onError?: (error: string[]) => void): AppThunk => async (dispatch) => {
     dispatch(createFlatStart());
     agent.Flat.createFlat(flatToCreate)
-        .then(() => dispatch(createFlatSuccess()))
-        .catch((error) => dispatch(createFlatFailure(error)));
+        .then(() => {
+            dispatch(createFlatSuccess());
+            onSuccess();
+        })
+        .catch((error) => {
+            const err = ['Wprowadzono niepoprawne dane'];
+			onError(err);
+            dispatch(createFlatFailure(error));
+        });
 };
 
 export const updateFlat = (flatToUpdate: UpdateFlatRequest): AppThunk => async (dispatch) => {
