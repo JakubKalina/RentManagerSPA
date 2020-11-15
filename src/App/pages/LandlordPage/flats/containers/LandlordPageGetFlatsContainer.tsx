@@ -74,13 +74,6 @@ const LandlordPageGetFlatsContainer: React.FC<{}> = () => {
 
 		setModalLoading(true);
 
-		setTimeout(() => {
-		  
-			setModalLoading(false);
-			setModalVisible(false);
-			
-			
-		}, 3000);
 	  };
 	
 	 const handleCancel = () => {

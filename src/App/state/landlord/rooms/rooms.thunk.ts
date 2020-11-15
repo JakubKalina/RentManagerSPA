@@ -1,14 +1,16 @@
 import { CreateRoomRequest } from './../../../api/endpoints/room/requests/createRoomRequest';
 import { AppThunk } from 'App/state/store';
-import { getRoomsStart, getRoomsSuccess, createRoomStart, createRoomSuccess, createRoomFailure, deleteRoomStart, deleteRoomSuccess, deleteRoomFailure } from './rooms.slice';
+import { getRoomsStart, getRoomsSuccess, createRoomStart, createRoomSuccess, createRoomFailure, deleteRoomStart, deleteRoomSuccess, deleteRoomFailure, getRoomsFailure } from './rooms.slice';
 import agent from 'App/api/agent/agent';
 import { deleteFlatFailure } from '../flats/flats.slice';
 
 export const getRooms = (flatId: number): AppThunk => async (dispatch) => {
     dispatch(getRoomsStart());
     agent.Room.getLandlordRooms(flatId)
-        .then((response) => dispatch(getRoomsSuccess(response)))
-        .catch((error) => dispatch(deleteFlatFailure(error)));
+        .then((response) => {
+            dispatch(getRoomsSuccess(response));
+        })
+        .catch((error) => dispatch(getRoomsFailure(error)));
 };
 
 export const createRoom = (roomToCreate: CreateRoomRequest): AppThunk => async (dispatch) => {

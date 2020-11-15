@@ -7,6 +7,7 @@ import adminUsersSlice from './admin/users/users.slice';
 
 import sessionSlice from './session/session.slice';
 import usersSlice from './users/users.slice';
+import { landlordTenanciesSlice } from './landlord/tenancies/tenancies.slice';
 
 const rootReducer = combineReducers({
 	admin: combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
 	users: usersSlice.reducer,
 	landlord: combineReducers({
 		flats: landlordFlatsSlice.reducer,
-		rooms: landlordRoomsSlice.reducer
+		rooms: landlordRoomsSlice.reducer,
+		tenancies: landlordTenanciesSlice.reducer
 	})
 });
 

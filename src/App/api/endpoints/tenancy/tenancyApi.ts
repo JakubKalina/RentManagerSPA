@@ -5,7 +5,7 @@ import { GetUserTenanciesResponse } from './responses/getUserTenanciesResponse';
 import { requests } from './../../agent/agent';
 import { GetFlatTenanciesResponse } from './responses/getFlatTenanciesResponse';
 export const TenancyApi = {
-    getFlatTenancies: (flatId: number): Promise<GetFlatTenanciesResponse> =>
+    getFlatTenancies: (flatId: number): Promise<GetFlatTenanciesResponse[]> =>
     requests.get(`/tenancy/flat/${flatId}`),
 
     getUserTenancies: (): Promise<GetUserTenanciesResponse> =>

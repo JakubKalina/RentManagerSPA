@@ -102,6 +102,7 @@ const SearchPageContainer: React.FC<{}> = () => {
 							/>
 						)}
 						<PageHeader title={'Znajdź użytkownika'} />
+
 						<SearchUsersForm
 							className='search-users-form'
 							name='searchUsersForm'

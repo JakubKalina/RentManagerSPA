@@ -8,20 +8,15 @@ import { deleteUser } from 'App/state/admin/users/users.thunk';
 import { UserForGetUsersResponse } from 'App/api/endpoints/admin/responses/getUsersResponse';
 import { FlatForGetLandlordFlatsResponse } from 'App/api/endpoints/flat/responses/getLandlordFlatsResponse';
 import { deleteFlat } from 'App/state/landlord/flats/flats.thunk';
+import { RoomForGetLandlordRoomsResponse } from 'App/api/endpoints/room/responses/getLandlordRoomsResponse';
+import { deleteRoom } from 'App/state/landlord/rooms/rooms.thunk';
 
-export const renderTableColumns = (flats: FlatForGetLandlordFlatsResponse[], dispatch: Dispatch<any>) => [
-	{
-		title: 'Nazwa',
-		dataIndex: 'description',
-		render: (description, record) => <Link to={`/landlord/flats/${record.id}`}>{description}</Link>
-	},
-	{ title: 'Adres', dataIndex: ['address', 'homeAddress'] },
-    { title: 'Miasto', dataIndex: ['address', 'city'] },
-    { title: 'Kod pocztowy', dataIndex: ['address', 'postalCode'] },
+export const renderRoomsTableColumns = (flats: RoomForGetLandlordRoomsResponse[], dispatch: Dispatch<any>) => [
+	{ title: 'Nazwa', dataIndex: 'name' },
 
 	{
 		title: 'Akcje',
-		render: (record: FlatForGetLandlordFlatsResponse) => (
+		render: (record: RoomForGetLandlordRoomsResponse) => (
 			<h1>
 				<Dropdown
 					overlay={menuForActionDropdown(record, flats, dispatch)}
@@ -38,37 +33,37 @@ export const renderTableColumns = (flats: FlatForGetLandlordFlatsResponse[], dis
 ];
 
 const menuForActionDropdown = (
-	record: FlatForGetLandlordFlatsResponse,
-	flats: FlatForGetLandlordFlatsResponse[],
+	record: RoomForGetLandlordRoomsResponse,
+	rooms: RoomForGetLandlordRoomsResponse[],
 	dispatch: Dispatch<any>) => (
 	<Menu>
-		<Menu.Item>
+		{/* <Menu.Item>
 			<Button type='link'>
 				<Link to={`/landlord/flats/${record.id}/update` }>Edycja</Link>
 			</Button>
-		</Menu.Item>
+		</Menu.Item> */}
 		<Menu.Item>
-			<Button type='link' onClick={confirmFlatDelete(record.id, flats, dispatch)}>
+			<Button type='link' onClick={confirmRoomDelete(record.id, rooms, dispatch)}>
 				Usuń
 			</Button>
 		</Menu.Item>
 	</Menu>
 );
 
-export function confirmFlatDelete(flatId: number, flats: FlatForGetLandlordFlatsResponse[], dispatch: Dispatch<any>) {
+export function confirmRoomDelete(roomId: number, rooms: RoomForGetLandlordRoomsResponse[], dispatch: Dispatch<any>) {
 	const { confirm } = Modal;
 
 	return () => {
-		const flatToDelete = flats.find((f) => f.id === flatId);
+		const roomToDelete = rooms.find((r) => r.id === roomId);
 		confirm({
-			title: `Czy na pewno chcesz usunąć mieszkanie ${flatToDelete?.description} ?`,
+			title: `Czy na pewno chcesz usunąć pokój ${roomToDelete?.name} ?`,
 			icon: <ExclamationCircleOutlined />,
 			content: 'Wykonanie tej akcji będzie nieodwracalne!',
 			okText: 'Tak',
 			okType: 'primary',
 			cancelText: 'Nie',
 			onOk() {
-				dispatch(deleteFlat(flatId));
+				//dispatch(deleteRoom(roomId));
 			}
 		});
 	};

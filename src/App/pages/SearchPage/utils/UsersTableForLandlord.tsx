@@ -16,7 +16,21 @@ export const renderTableColumnsForLandlord = (users: UserForGetUsersResponse[], 
     { title: 'Kod wyszukiwania', dataIndex: 'searchId' },
     { title: 'Email', dataIndex: 'email' },
     { title: 'Telefon', dataIndex: 'phoneNumber' },
-
+	{ title: 'Rola',
+		render: (record: UserForGetUsersResponse) => (
+			<Tag.CheckableTag checked={true} style={{marginBottom: "10px"}} >
+			{
+				record.role==='Landlord'?'Zarządca':""
+			}
+			{
+				record.role==='Administrator'?'Administrator':""
+			}
+			{
+				record.role==='Tenant'?'Najemca':""
+			}
+			</Tag.CheckableTag>
+		)
+	},
 
 	{
 		title: 'Akcje',
@@ -38,7 +52,7 @@ export const renderTableColumnsForLandlord = (users: UserForGetUsersResponse[], 
 
 const menuForActionDropdown = (
 	record: UserForGetUsersResponse,
-	flats: UserForGetUsersResponse[],
+	users: UserForGetUsersResponse[],
 	dispatch: Dispatch<any>) => (
 	<Menu>
 		<Menu.Item>
@@ -51,11 +65,18 @@ const menuForActionDropdown = (
 				Napisz wiadomość
 			</Button>
 		</Menu.Item>
-        <Menu.Item>
-			<Button type='link'>
-				Dodaj do mieszkania
-			</Button>
-		</Menu.Item>
+
+			{
+				record.role==='Tenant'?			
+				<Menu.Item>
+					<Button type='link'>
+					<Link to={`/landlord/tenants/add/${record.id}`}>Dodaj do mieszkania</Link>
+					</Button>
+				</Menu.Item>
+				:""
+			}
+
+
 	</Menu>
 );
 

@@ -21,7 +21,9 @@ import { default as AdminPageTenants } from './pages/AdminPage/tenants/AdminPage
 import { default as AdminPageLandlords } from './pages/AdminPage/landlords/AdminPageLandlordsContainer';
 import { default as ProfilePageUpdate } from './pages/ProfilePage/containers/ProfilePageUpdateProfileContainer';
 import { default as ProfilePageChangePassword } from './pages/ProfilePage/containers/ProfilePageChangePasswordContainer';
-
+import { default as LandlordPageUpdateFlat } from './pages/LandlordPage/flats/containers/LandlordPageUpdateFlatContainer';
+import { default as LandlordPageGetFlat } from './pages/LandlordPage/flats/containers/LandlordPageGetFlatContainer';
+import { default as LandlordPageAddTenancy } from './pages/LandlordPage/flats/containers/LandlordPageAddTenancyContainer';
 
 
 
@@ -75,8 +77,10 @@ const Routes: React.FC = () => {
 			{/* Landlord routes */}
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats' component={LandlordPageFlats} />
 
-			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats' component={LandlordPageFlats} />
-			
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats/:flatId/update' component={LandlordPageUpdateFlat} />
+
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats/:flatId' component={LandlordPageGetFlat} />
+
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/messages' component={MessagePage} />
 
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/search' component={SearchPage} />
@@ -84,6 +88,9 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/profile' component={ProfilePage} />
 			
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/reports' component={ReportsPage} />
+
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/tenants/add/:userId' component={LandlordPageAddTenancy} />
+
 			
 			{/* Dokończyć poniższe */}
 			{/* <ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats/:flatId' component={LandlordPageRooms} /> */}

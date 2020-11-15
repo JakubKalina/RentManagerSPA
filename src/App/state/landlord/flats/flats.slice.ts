@@ -1,3 +1,4 @@
+import { GetFlatResponse } from './../../../api/endpoints/flat/responses/getFlatResponse';
 import { GetLandlordFlatsResponse } from './../../../api/endpoints/flat/responses/getLandlordFlatsResponse';
 import { landlordFlatsInitialState, LandlordFlatsState } from './flats.state';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -25,6 +26,22 @@ export const landlordFlatsSlice = createSlice({
             state.status.getFlats = FAILED;
             state.error = action.payload;
         },
+
+
+        getFlatStart: (state: LandlordFlatsState) => {
+            state.status.getFlat = LOADING;
+            state.error = null;
+            state.selectedFlat = null;
+        },
+        getFlatSuccess: (state: LandlordFlatsState, action: PayloadAction<GetFlatResponse>) => {
+            state.status.getFlat = SUCCESS;
+            state.selectedFlat = action.payload;
+        },
+        getFlatFailure: (state: LandlordFlatsState, action: PayloadAction<string[]>) => {
+            state.status.getFlat = FAILED;
+            state.error = action.payload;
+        },
+
 
         createFlatStart: (state: LandlordFlatsState) => {
             state.error = null;
@@ -75,6 +92,10 @@ export const {
     getFlatsStart,
     getFlatsSuccess,
     getFlatsFailure,
+
+    getFlatStart,
+    getFlatSuccess,
+    getFlatFailure,
 
     createFlatStart,
     createFlatSuccess,

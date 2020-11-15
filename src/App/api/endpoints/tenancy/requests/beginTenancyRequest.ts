@@ -4,6 +4,6 @@ export interface BeginTenancyRequest {
     endDate: Date;
     deposit: number;
     roomId: number | null;
-    userId: number;
+    userId: string;
 
 }

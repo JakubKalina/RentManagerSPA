@@ -8,23 +8,24 @@ import { deleteUser } from 'App/state/admin/users/users.thunk';
 import { UserForGetUsersResponse } from 'App/api/endpoints/admin/responses/getUsersResponse';
 import { FlatForGetLandlordFlatsResponse } from 'App/api/endpoints/flat/responses/getLandlordFlatsResponse';
 import { deleteFlat } from 'App/state/landlord/flats/flats.thunk';
+import { RoomForGetLandlordRoomsResponse } from 'App/api/endpoints/room/responses/getLandlordRoomsResponse';
+import { deleteRoom } from 'App/state/landlord/rooms/rooms.thunk';
+import { GetFlatTenanciesResponse } from 'App/api/endpoints/tenancy/responses/getFlatTenanciesResponse';
 
-export const renderTableColumns = (flats: FlatForGetLandlordFlatsResponse[], dispatch: Dispatch<any>) => [
-	{
-		title: 'Nazwa',
-		dataIndex: 'description',
-		render: (description, record) => <Link to={`/landlord/flats/${record.id}`}>{description}</Link>
-	},
-	{ title: 'Adres', dataIndex: ['address', 'homeAddress'] },
-    { title: 'Miasto', dataIndex: ['address', 'city'] },
-    { title: 'Kod pocztowy', dataIndex: ['address', 'postalCode'] },
+export const renderTenantsTableColumns = (tenancies: GetFlatTenanciesResponse[], dispatch: Dispatch<any>) => [
+	{ title: 'Imię', dataIndex: ['user', 'firstName'] },
+    { title: 'Nazwisko', dataIndex: ['user', 'lastName'] },
+    { title: 'Początek', dataIndex: 'startDate' },
+    { title: 'Koniec', dataIndex: 'endDate' },
+    { title: 'Pokój', dataIndex: ['room', 'name'] },
+
 
 	{
 		title: 'Akcje',
-		render: (record: FlatForGetLandlordFlatsResponse) => (
+		render: (record: GetFlatTenanciesResponse) => (
 			<h1>
 				<Dropdown
-					overlay={menuForActionDropdown(record, flats, dispatch)}
+					overlay={menuForActionDropdown(record, tenancies, dispatch)}
 					trigger={['click']}
 					placement='bottomCenter'
 				>
@@ -38,37 +39,37 @@ export const renderTableColumns = (flats: FlatForGetLandlordFlatsResponse[], dis
 ];
 
 const menuForActionDropdown = (
-	record: FlatForGetLandlordFlatsResponse,
-	flats: FlatForGetLandlordFlatsResponse[],
+	record: GetFlatTenanciesResponse,
+	tenancies: GetFlatTenanciesResponse[],
 	dispatch: Dispatch<any>) => (
 	<Menu>
-		<Menu.Item>
+		{/* <Menu.Item>
 			<Button type='link'>
 				<Link to={`/landlord/flats/${record.id}/update` }>Edycja</Link>
 			</Button>
-		</Menu.Item>
+		</Menu.Item> */}
 		<Menu.Item>
-			<Button type='link' onClick={confirmFlatDelete(record.id, flats, dispatch)}>
+			<Button type='link' onClick={confirmTenancyDelete(record.id, tenancies, dispatch)}>
 				Usuń
 			</Button>
 		</Menu.Item>
 	</Menu>
 );
 
-export function confirmFlatDelete(flatId: number, flats: FlatForGetLandlordFlatsResponse[], dispatch: Dispatch<any>) {
+export function confirmTenancyDelete(roomId: number, rooms: GetFlatTenanciesResponse[], dispatch: Dispatch<any>) {
 	const { confirm } = Modal;
 
 	return () => {
-		const flatToDelete = flats.find((f) => f.id === flatId);
+		const roomToDelete = rooms.find((r) => r.id === roomId);
 		confirm({
-			title: `Czy na pewno chcesz usunąć mieszkanie ${flatToDelete?.description} ?`,
+			title: `Czy na pewno chcesz zakończyć najem ?`,
 			icon: <ExclamationCircleOutlined />,
 			content: 'Wykonanie tej akcji będzie nieodwracalne!',
 			okText: 'Tak',
 			okType: 'primary',
 			cancelText: 'Nie',
 			onOk() {
-				dispatch(deleteFlat(flatId));
+				//dispatch(deleteRoom(roomId));
 			}
 		});
 	};
