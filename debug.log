@@ -10,3 +10,4 @@
 [1114/002425.853:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Jakub\AppData\Local\Temp\.profile\Crashpad\reports\583ada14-0324-4f57-bb4a-281f37f6854d.dmp: Nie mo¿na odnaleŸæ okreœlonego pliku. (0x2)
 [1114/002425.853:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
 [1114/020108.993:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[1115/230514.439:ERROR:crash_report_database_win.cc(498)] failed to stat report

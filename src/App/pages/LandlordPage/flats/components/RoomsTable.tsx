@@ -11,7 +11,7 @@ import { deleteFlat } from 'App/state/landlord/flats/flats.thunk';
 import { RoomForGetLandlordRoomsResponse } from 'App/api/endpoints/room/responses/getLandlordRoomsResponse';
 import { deleteRoom } from 'App/state/landlord/rooms/rooms.thunk';
 
-export const renderRoomsTableColumns = (flats: RoomForGetLandlordRoomsResponse[], dispatch: Dispatch<any>) => [
+export const renderRoomsTableColumns = (rooms: RoomForGetLandlordRoomsResponse[], dispatch: Dispatch<any>, flatId: number) => [
 	{ title: 'Nazwa', dataIndex: 'name' },
 
 	{
@@ -19,7 +19,7 @@ export const renderRoomsTableColumns = (flats: RoomForGetLandlordRoomsResponse[]
 		render: (record: RoomForGetLandlordRoomsResponse) => (
 			<h1>
 				<Dropdown
-					overlay={menuForActionDropdown(record, flats, dispatch)}
+					overlay={menuForActionDropdown(record, rooms, flatId, dispatch)}
 					trigger={['click']}
 					placement='bottomCenter'
 				>
@@ -35,6 +35,7 @@ export const renderRoomsTableColumns = (flats: RoomForGetLandlordRoomsResponse[]
 const menuForActionDropdown = (
 	record: RoomForGetLandlordRoomsResponse,
 	rooms: RoomForGetLandlordRoomsResponse[],
+	flatId: number,
 	dispatch: Dispatch<any>) => (
 	<Menu>
 		{/* <Menu.Item>
@@ -43,14 +44,14 @@ const menuForActionDropdown = (
 			</Button>
 		</Menu.Item> */}
 		<Menu.Item>
-			<Button type='link' onClick={confirmRoomDelete(record.id, rooms, dispatch)}>
+			<Button type='link' onClick={confirmRoomDelete(record.id, rooms, flatId, dispatch)}>
 				Usuń
 			</Button>
 		</Menu.Item>
 	</Menu>
 );
 
-export function confirmRoomDelete(roomId: number, rooms: RoomForGetLandlordRoomsResponse[], dispatch: Dispatch<any>) {
+export function confirmRoomDelete(roomId: number, rooms: RoomForGetLandlordRoomsResponse[], flatId: number , dispatch: Dispatch<any>) {
 	const { confirm } = Modal;
 
 	return () => {
@@ -63,7 +64,7 @@ export function confirmRoomDelete(roomId: number, rooms: RoomForGetLandlordRooms
 			okType: 'primary',
 			cancelText: 'Nie',
 			onOk() {
-				//dispatch(deleteRoom(roomId));
+				dispatch(deleteRoom(flatId, roomId));
 			}
 		});
 	};

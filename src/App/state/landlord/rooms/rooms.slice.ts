@@ -29,7 +29,7 @@ export const landlordRoomsSlice = createSlice({
             state.error = null;
             state.status.createRoom = LOADING;
         },
-        createRoomSuccess: (state: LandlordRoomsState, action: PayloadAction<string[]>) => {
+        createRoomSuccess: (state: LandlordRoomsState) => {
             state.status.createRoom = SUCCESS;
         },
         createRoomFailure: (state: LandlordRoomsState, action: PayloadAction<string[]>) => {

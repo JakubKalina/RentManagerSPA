@@ -100,7 +100,7 @@ const LandlordPageUpdateFlatContainer: React.FC<LandlordPageUpdateFlatContainerP
 								className='w-100'
 							/>
 						)}
-						<PageHeader title={'Zaloguj się'} />
+						<PageHeader title={'Edytuj mieszkanie'} />
 						<UpdateFlatForm
 
 							initialValues={{

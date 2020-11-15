@@ -13,11 +13,18 @@ export const getRooms = (flatId: number): AppThunk => async (dispatch) => {
         .catch((error) => dispatch(getRoomsFailure(error)));
 };
 
-export const createRoom = (roomToCreate: CreateRoomRequest): AppThunk => async (dispatch) => {
+export const createRoom = (roomToCreate: CreateRoomRequest, onSuccess?: () => void, onError?: (error: string[]) => void): AppThunk => async (dispatch) => {
     dispatch(createRoomStart());
     agent.Room.createRoom(roomToCreate)
-        .then(() => dispatch(createRoomSuccess()))
-        .catch((error) => dispatch(createRoomFailure(error)));
+        .then(() => {
+            dispatch(createRoomSuccess());
+            onSuccess();
+        })
+        .catch((error) => {
+            const err = ['Wprowadzono niepoprawne dane'];
+			onError(err);
+            dispatch(createRoomFailure(error));
+        });
 };
 
 export const deleteRoom = (flatId: number, roomId: number): AppThunk => async (dispatch) => {
