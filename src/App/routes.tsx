@@ -24,7 +24,7 @@ import { default as ProfilePageChangePassword } from './pages/ProfilePage/contai
 import { default as LandlordPageUpdateFlat } from './pages/LandlordPage/flats/containers/LandlordPageUpdateFlatContainer';
 import { default as LandlordPageGetFlat } from './pages/LandlordPage/flats/containers/LandlordPageGetFlatContainer';
 import { default as LandlordPageAddTenancy } from './pages/LandlordPage/flats/containers/LandlordPageAddTenancyContainer';
-
+import { default as LandlordPageUpdateTenancy } from './pages/LandlordPage/flats/containers/LandlordPageUpdateTenancyContainer';
 
 
 import { default as MessagePage } from './pages/MessagePage/MessagePageContainer';
@@ -90,6 +90,8 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/reports' component={ReportsPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/tenants/add/:userId' component={LandlordPageAddTenancy} />
+
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/tenancy/:tenancyId/update' component={LandlordPageUpdateTenancy} />
 
 			
 			{/* Dokończyć poniższe */}

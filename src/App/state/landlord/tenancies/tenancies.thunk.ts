@@ -1,7 +1,7 @@
 import { UpdateTenancyRequest } from './../../../api/endpoints/tenancy/requests/updateTenancyRequest';
 import { BeginTenancyRequest } from './../../../api/endpoints/tenancy/requests/beginTenancyRequest';
 import { AppThunk } from 'App/state/store';
-import { getTenanciesStart, getTenanciesFailure, getTenanciesSuccess, beginTenancySuccess, beginTenancyFailure, beginTenancyStart, updateTenancySuccess, updateTenancyFailure, updateTenancyStart } from './tenancies.slice';
+import { getTenanciesStart, getTenanciesFailure, getTenanciesSuccess, beginTenancySuccess, beginTenancyFailure, beginTenancyStart, updateTenancySuccess, updateTenancyFailure, updateTenancyStart, getTenancyStart, getTenancyFailure, getTenancySuccess } from './tenancies.slice';
 import agent from 'App/api/agent/agent';
 
 
@@ -13,6 +13,16 @@ export const getTenancies = (flatId: number): AppThunk => async (dispatch) => {
         })
         .catch((error) => dispatch(getTenanciesFailure(error)));
 };
+
+export const getTenancy = (tenancyId: number): AppThunk => async (dispatch) => {
+    dispatch(getTenancyStart());
+    agent.Tenancy.getTenancy(tenancyId)
+        .then((response) => {
+            dispatch(getTenancySuccess(response));
+
+        })
+        .catch((error) => dispatch(getTenancyFailure(error)));
+}
 
 
 export const beginTenancy = (tenancyToBegin: BeginTenancyRequest, onSuccess?: () => void, onError?: (error: string[]) => void): AppThunk => async (dispatch) => {
@@ -32,6 +42,7 @@ export const beginTenancy = (tenancyToBegin: BeginTenancyRequest, onSuccess?: ()
 
 export const updateTenancy = (tenancyToUpdate: UpdateTenancyRequest, onSuccess?: () => void, onError?: (error: string[]) => void): AppThunk => async (dispatch) => {
     dispatch(updateTenancyStart());
+
     agent.Tenancy.updateTenancy(tenancyToUpdate)
         .then(() => {
             dispatch(updateTenancySuccess());

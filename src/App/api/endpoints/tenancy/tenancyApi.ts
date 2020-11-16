@@ -8,6 +8,9 @@ export const TenancyApi = {
     getFlatTenancies: (flatId: number): Promise<GetFlatTenanciesResponse[]> =>
     requests.get(`/tenancy/flat/${flatId}`),
 
+    getTenancy: (tenancyId: number): Promise<GetFlatTenanciesResponse> =>
+    requests.get(`/tenancy/${tenancyId}`),
+
     getUserTenancies: (): Promise<GetUserTenanciesResponse> =>
     requests.get(`/tenancy/user`),
 

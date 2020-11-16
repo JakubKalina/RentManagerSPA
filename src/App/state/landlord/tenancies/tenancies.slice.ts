@@ -25,6 +25,21 @@ export const landlordTenanciesSlice = createSlice({
             state.error = action.payload;
         },
 
+        
+        getTenancyStart: (state: LandlordTenanciesState) => {
+            state.status.getTenancy = LOADING;
+            state.error = null;
+            state.tenancy = null;
+        },
+        getTenancySuccess: (state: LandlordTenanciesState, action: PayloadAction<GetFlatTenanciesResponse>) => {
+            state.status.getTenancy = SUCCESS;
+            state.tenancy = action.payload;
+        },
+        getTenancyFailure: (state: LandlordTenanciesState, action: PayloadAction<string[]>) => {
+            state.status.getTenancy = FAILED;
+            state.error = action.payload;
+        },
+
 
         beginTenancyStart: (state: LandlordTenanciesState) => {
             state.status.beginTenancy = LOADING;
@@ -66,6 +81,10 @@ export const {
     getTenanciesStart,
     getTenanciesSuccess,
     getTenanciesFailure,
+
+    getTenancyStart,
+    getTenancySuccess,
+    getTenancyFailure,
 
     beginTenancyStart,
     beginTenancySuccess,

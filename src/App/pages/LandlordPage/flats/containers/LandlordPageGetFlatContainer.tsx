@@ -302,7 +302,7 @@ const LandlordPageGetFlatContainer: React.FC<LandlordPageGetFlatContainerProps> 
                         <Table
                         
                         loading={tenantsStatus.getTenancies === StatusType.LOADING}
-                        columns={renderTenantsTableColumns(tenants, dispatch)}
+                        columns={renderTenantsTableColumns(tenants, history, Number(flatId), dispatch)}
                         dataSource={tenants}
                         rowKey='id'
                         />
