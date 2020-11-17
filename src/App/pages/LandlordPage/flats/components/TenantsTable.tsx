@@ -59,6 +59,11 @@ const menuForActionDropdown = (
 				Zakończ teraz
 			</Button>
 		</Menu.Item>
+		<Menu.Item>
+			<Button type='link'>
+				Oceń najemcę
+			</Button>
+		</Menu.Item>
 	</Menu>
 );
 

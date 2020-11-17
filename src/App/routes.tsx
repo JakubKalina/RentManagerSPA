@@ -25,6 +25,8 @@ import { default as LandlordPageUpdateFlat } from './pages/LandlordPage/flats/co
 import { default as LandlordPageGetFlat } from './pages/LandlordPage/flats/containers/LandlordPageGetFlatContainer';
 import { default as LandlordPageAddTenancy } from './pages/LandlordPage/flats/containers/LandlordPageAddTenancyContainer';
 import { default as LandlordPageUpdateTenancy } from './pages/LandlordPage/flats/containers/LandlordPageUpdateTenancyContainer';
+import { default as ReviewsPage } from './pages/ReviewsPage/ReviewsPageContainer';
+
 
 
 import { default as MessagePage } from './pages/MessagePage/MessagePageContainer';
@@ -55,6 +57,12 @@ const Routes: React.FC = () => {
 				acceptedRoles={[Role.ADMIN, Role.LANDLORD, Role.TENANT]}
 			/>
 
+			<ProtectedRoute
+				path='/reviews/:userId'
+				exact
+				component={ReviewsPage}
+				acceptedRoles={[Role.ADMIN, Role.LANDLORD, Role.TENANT]}
+			/>
 			
 			<ProtectedRoute 
 				acceptedRoles={[Role.TENANT, Role.LANDLORD, Role.ADMIN]}

@@ -24,9 +24,7 @@ const SearchPageContainer: React.FC<{}> = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-
     type FinishFormType = (values: Store) => void;
-
 
     const [searchError, setSearchError] = useState<string[] | boolean>(false);
     const [searchQuery, setSearchQuery] = useState('');

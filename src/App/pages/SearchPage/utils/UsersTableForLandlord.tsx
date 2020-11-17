@@ -57,7 +57,7 @@ const menuForActionDropdown = (
 	<Menu>
 		<Menu.Item>
 			<Button type='link'>
-				<Link to={`/landlord/flats/${record.id}/update`}>Sprawdź opinie</Link>
+				<Link to={`/reviews/${record.id}`}>Sprawdź opinie</Link>
 			</Button>
 		</Menu.Item>
 		<Menu.Item>

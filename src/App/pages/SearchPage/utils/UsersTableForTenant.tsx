@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Tag, Button, Modal, Dropdown, Menu } from 'antd';
@@ -8,6 +8,12 @@ import { deleteUser } from 'App/state/admin/users/users.thunk';
 import { FlatForGetLandlordFlatsResponse } from 'App/api/endpoints/flat/responses/getLandlordFlatsResponse';
 import { deleteFlat } from 'App/state/landlord/flats/flats.thunk';
 import { UserForGetUsersResponse } from 'App/api/endpoints/account/responses/getUsersResponse';
+import { RootState } from 'App/state/root.reducer';
+import { useSelector } from 'react-redux';
+import { getUserReviews } from 'App/state/reviews/reviews.thunk';
+import defaultPageQueryParams from 'App/common/utils/defaultPageQueryParams';
+import { ReviewForGetUserReviewsResponse } from 'App/api/endpoints/review/responses/getUserReviewsResponse';
+import StatusType from 'App/types/requestStatus';
 
 export const renderTableColumnsForTenant = (users: UserForGetUsersResponse[], dispatch: Dispatch<any>) => [
 
@@ -16,7 +22,6 @@ export const renderTableColumnsForTenant = (users: UserForGetUsersResponse[], di
     { title: 'Kod wyszukiwania', dataIndex: 'searchId' },
     { title: 'Email', dataIndex: 'email' },
     { title: 'Telefon', dataIndex: 'phoneNumber' },
-
 
 	{
 		title: 'Akcje',
@@ -38,12 +43,12 @@ export const renderTableColumnsForTenant = (users: UserForGetUsersResponse[], di
 
 const menuForActionDropdown = (
 	record: UserForGetUsersResponse,
-	flats: UserForGetUsersResponse[],
+	users: UserForGetUsersResponse[],
 	dispatch: Dispatch<any>) => (
 	<Menu>
 		<Menu.Item>
 			<Button type='link'>
-				<Link to={`/landlord/flats/${record.id}/update`}>Sprawdź opinie</Link>
+				<Link to={`/reviews/${record.id}`}>Sprawdź opinie</Link>
 			</Button>
 		</Menu.Item>
 		<Menu.Item>
@@ -54,21 +59,3 @@ const menuForActionDropdown = (
 	</Menu>
 );
 
-export function confirmFlatDelete(flatId: number, flats: FlatForGetLandlordFlatsResponse[], dispatch: Dispatch<any>) {
-	const { confirm } = Modal;
-
-	return () => {
-		const flatToDelete = flats.find((f) => f.id === flatId);
-		confirm({
-			title: `Czy na pewno chcesz usunąć mieszkanie ${flatToDelete?.description} ?`,
-			icon: <ExclamationCircleOutlined />,
-			content: 'Wykonanie tej akcji będzie nieodwracalne!',
-			okText: 'Tak',
-			okType: 'primary',
-			cancelText: 'Nie',
-			onOk() {
-				dispatch(deleteFlat(flatId));
-			}
-		});
-	};
-}
