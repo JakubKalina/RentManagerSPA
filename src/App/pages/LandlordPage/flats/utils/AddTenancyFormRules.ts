@@ -6,19 +6,19 @@ export const addTenancyFormRules: AddTenancyFormRules = {
     deposit: [
         {
             required: true,
-            message: 'Nazwa jest wymagana'
+            message: 'Kaucja jest wymagana'
         }
     ],
     endDate: [
         {
             required: true,
-            message: 'Nazwa jest wymagana'
+            message: 'Data rozpoczęcia jest wymagana'
         }
     ],
     startDate: [
         {
             required: true,
-            message: 'Nazwa jest wymagana'
+            message: 'Data zakończenia jest wymagana'
         }
     ]
 

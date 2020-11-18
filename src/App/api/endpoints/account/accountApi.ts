@@ -13,6 +13,7 @@ import appConfig from 'app.config';
 import { HttpStatusCodeResponse } from 'App/types/httpResponse.d';
 import { GetUsersRequest } from './requests/getUsersRequest';
 import { GetUsersResponse } from './responses/getUsersResponse';
+import { GetUserDetailsResponse } from './responses/getUserDetailsResponse';
 
 const { urlToIncludeInEmail } = appConfig;
 
@@ -22,6 +23,8 @@ export const AccountApi = {
 		requests.get(`/account/users`, body),
 
 	getAccountDetails: (): Promise<GetAccountDetailsResponse> => requests.get(`/account/details`),
+
+	getUserDetails: (userId: string): Promise<GetUserDetailsResponse> => requests.get(`/account/details/${userId}`),
 
 	updateProfile: (body: UpdateProfileRequest): Promise<UpdateAccountDetailsResponse> =>
 		requests.put(`/account/details`, body),

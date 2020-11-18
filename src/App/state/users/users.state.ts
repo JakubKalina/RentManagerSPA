@@ -2,25 +2,29 @@ import { defaultPageQueryParams } from './../../common/utils/pagination.utilitie
 import { UserForGetUsersResponse } from "App/api/endpoints/account/responses/getUsersResponse";
 import { GetUsersRequest } from "App/api/endpoints/account/requests/getUsersRequest";
 import StatusType from "App/types/requestStatus";
+import { GetUserDetailsResponse } from 'App/api/endpoints/account/responses/getUserDetailsResponse';
 
 const { INITIAL } = StatusType;
 
 export interface UsersState {
     status: {
         getUsers: StatusType;
+        getUserDetails: StatusType;
     };
     error: string[];
+    user: GetUserDetailsResponse;
     users: UserForGetUsersResponse[];
     getUsersParams: GetUsersRequest;
     getUsersTotalPages: number;
-    // userReviews
 }
 
 export const usersInitialState: UsersState = {
     status: {
-        getUsers: INITIAL
+        getUsers: INITIAL,
+        getUserDetails: INITIAL
     },
     error: null,
+    user: null,
     users: [],
     getUsersParams: defaultPageQueryParams,
     getUsersTotalPages: 0

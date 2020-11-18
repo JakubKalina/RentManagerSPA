@@ -1,14 +1,13 @@
 import { HttpStatusCodeResponse } from 'App/types/httpResponse.d';
 import { requests } from './../../agent/agent';
 import { GetUserReviewsResponse } from './responses/getUserReviewsResponse';
-import { GetUserReviewsRequest } from './requests/getUserReviewsRequest';
 import { CreateTenantReviewRequest } from './requests/createTenantReviewRequest';
 import { CreateLandlordReviewRequest } from './requests/createLandlordReviewRequest';
 export const ReviewApi = {
 
 
-    getUserReviews: (params: GetUserReviewsRequest): Promise<GetUserReviewsResponse> =>
-    requests.get(`/review`, params),
+    getUserReviews: (userId: string): Promise<GetUserReviewsResponse> =>
+    requests.get(`/review/${userId}`),
 
     createTenantReview: (body: CreateTenantReviewRequest): Promise<HttpStatusCodeResponse> =>
     requests.post(`/review/landlord`, body),

@@ -55,11 +55,14 @@ const menuForActionDropdown = (
 	users: UserForGetUsersResponse[],
 	dispatch: Dispatch<any>) => (
 	<Menu>
+		
 		<Menu.Item>
 			<Button type='link'>
 				<Link to={`/reviews/${record.id}`}>Sprawdź opinie</Link>
 			</Button>
 		</Menu.Item>
+
+
 		<Menu.Item>
 			<Button type='link'>
 				Napisz wiadomość

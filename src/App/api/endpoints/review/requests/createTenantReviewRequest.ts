@@ -1,5 +1,5 @@
 export interface CreateTenantReviewRequest {
-    userId: string;
+    userToId: string;
     rate: number;
     description: string;
     flatId: number;

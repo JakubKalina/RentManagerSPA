@@ -61,7 +61,9 @@ const menuForActionDropdown = (
 		</Menu.Item>
 		<Menu.Item>
 			<Button type='link'>
-				Oceń najemcę
+			<Link to={`/review/${flatId}/${record.user.id}` }>
+					Oceń najemcę
+				</Link>
 			</Button>
 		</Menu.Item>
 	</Menu>

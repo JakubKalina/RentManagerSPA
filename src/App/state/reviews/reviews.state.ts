@@ -1,5 +1,6 @@
 import StatusType from "App/types/requestStatus";
-import { ReviewForGetUserReviewsResponse } from "App/api/endpoints/review/responses/getUserReviewsResponse";
+import { ReviewForGetUserReviewsResponse, GetUserReviewsResponse } from "App/api/endpoints/review/responses/getUserReviewsResponse";
+import defaultPageQueryParams from "App/common/utils/defaultPageQueryParams";
 
 const { INITIAL } = StatusType;
 
