@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Dispatch } from "react";
 import StatusType from "App/types/requestStatus";
-import { Result, Row, Button, Badge, Col, Typography, Avatar, Input, Table, notification, Modal, Card, Form, PageHeader } from "antd";
+import { Result, Row, Button, Badge, Col, Typography, Avatar, Input, Table, notification, Modal, Card, Form, PageHeader, Dropdown, Menu } from "antd";
 import { UserOutlined, ArrowLeftOutlined, PlusOutlined, HomeOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import LoadingScreen from "App/common/components/LoadingScreen";
 import defaultPageQueryParams from "App/common/utils/defaultPageQueryParams";
@@ -107,6 +107,12 @@ const LandlordPageGetFlatContainer: React.FC<LandlordPageGetFlatContainerProps> 
 	}, [dispatch]);
 
 
+    // Powiadomienia mieszkania
+    const handleDisplayFlatReportsButtonClick: MouseClickEvent = () => {
+        history.push(`/landlord/flats/${Number(flatId)}/reports`);
+    };
+    
+    
     // Edycja mieszkania
     const handleEditFlatButtonClick: MouseClickEvent = () => {
         history.push(`/landlord/flats/${Number(flatId)}/update`);
@@ -174,7 +180,28 @@ const LandlordPageGetFlatContainer: React.FC<LandlordPageGetFlatContainerProps> 
             )
         );
         
-	};
+    };
+    
+
+    const menu = (
+        <Menu>
+          <Menu.Item>
+            <Button onClick={handleDisplayFlatReportsButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Sprawdź aktualności</Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button onClick={handleEditFlatButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Edytuj mieszkanie</Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button onClick={handleDeleteFlatButtonClick(flatId, flat, dispatch, history)} type="primary" style={{width: '150px', margin: "10px"}}>Usuń mieszkanie</Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button onClick={handleAddRoomButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj pokój</Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button onClick={handleAddTenantButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj najemcę</Button>
+          </Menu.Item>
+        </Menu>
+      );
 
 
 	return (
@@ -232,19 +259,13 @@ const LandlordPageGetFlatContainer: React.FC<LandlordPageGetFlatContainerProps> 
 					</Card.Grid>
 
 
+
 					<Card.Grid style={{width: '100%', textAlign: "center"}}>
 
-                        <Button onClick={handleEditFlatButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Edytuj mieszkanie</Button>
-                       
-                        <Button onClick={handleDeleteFlatButtonClick(flatId, flat, dispatch, history)} type="primary" style={{width: '150px', margin: "10px"}}>Usuń mieszkanie</Button>
-                      
-                        <Button onClick={handleAddRoomButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj pokój</Button>
-                      
-                        <Button onClick={handleAddTenantButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj najemcę</Button>
+                        <Dropdown  overlay={menu} placement="bottomCenter" arrow>
+                            <Button>Opcje</Button>
+                        </Dropdown>
 
-
-
-                        
                         <Modal
                         visible={modalAddRoomVisible}
                         title="Dodaj pokój"
@@ -266,6 +287,98 @@ const LandlordPageGetFlatContainer: React.FC<LandlordPageGetFlatContainerProps> 
                         </Modal>
 
 					</Card.Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+					{/* <Card.Grid style={{width: '100%', textAlign: "center"}}>
+
+                        <Button onClick={handleEditFlatButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Edytuj mieszkanie</Button>
+                       
+                        <Button onClick={handleDeleteFlatButtonClick(flatId, flat, dispatch, history)} type="primary" style={{width: '150px', margin: "10px"}}>Usuń mieszkanie</Button>
+                      
+                        <Button onClick={handleAddRoomButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj pokój</Button>
+                      
+                        <Button onClick={handleAddTenantButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj najemcę</Button>
+     
+                        <Modal
+                        visible={modalAddRoomVisible}
+                        title="Dodaj pokój"
+                        onOk={handleAddRoomOk}
+                        onCancel={handleAddRoomCancel}
+                        footer={[
+                            <Button key="back" onClick={handleAddRoomCancel}>
+                            Anuluj
+                            </Button>,
+                        ]}
+                        >
+                            <AddRoomForm
+                                className='login-form'
+                                name='loginForm'
+                                size='large'
+                                onFinish={createFlatHandler}
+                                autoComplete='off'
+                            />
+                        </Modal>
+
+					</Card.Grid> */}
+
+{/* 
+					<Card.Grid style={{width: '100%', textAlign: "center"}}>
+
+
+                    <Button onClick={handleAddRoomButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj pokój</Button>
+                      
+                      <Button onClick={handleAddTenantButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Dodaj najemcę</Button>
+
+
+
+                      
+                      <Modal
+                      visible={modalAddRoomVisible}
+                      title="Dodaj pokój"
+                      onOk={handleAddRoomOk}
+                      onCancel={handleAddRoomCancel}
+                      footer={[
+                          <Button key="back" onClick={handleAddRoomCancel}>
+                          Anuluj
+                          </Button>,
+                      ]}
+                      >
+                          <AddRoomForm
+                              className='login-form'
+                              name='loginForm'
+                              size='large'
+                              onFinish={createFlatHandler}
+                              autoComplete='off'
+                          />
+                      </Modal>
+
+					</Card.Grid> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				</Card>
                 }
             </Col>

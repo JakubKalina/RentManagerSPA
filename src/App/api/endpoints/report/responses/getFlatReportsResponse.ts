@@ -1,13 +1,16 @@
 import { ICollectionResponse } from 'App/types/pagination/pagination';
-export interface GetReportsResponse extends ICollectionResponse<ReportForGetReportsResponse> {}
+export interface GetFlatReportsResponse extends ICollectionResponse<ReportForGetFlatReportsResponse> {
+    flatId: number;
+}
 
-export interface ReportForGetReportsResponse {
+export interface ReportForGetFlatReportsResponse {
     id: number;
     title: string;
     description: string;
     createdAt: Date;
     type: string;
-    flatDescription: string;
+    //flatId: number;
+    senderId: string;
     senderFirstName: string;
     senderLastName: string;
 }
