@@ -111,6 +111,11 @@ const LandlordPageGetFlatContainer: React.FC<LandlordPageGetFlatContainerProps> 
     const handleDisplayFlatReportsButtonClick: MouseClickEvent = () => {
         history.push(`/landlord/flats/${Number(flatId)}/reports`);
     };
+
+    // Płatnosci mieszkania
+    const handleDisplayFlatPaymentsButtonClick: MouseClickEvent = () => {
+        history.push(`/landlord/payments/${Number(flatId)}`);
+    };
     
     
     // Edycja mieszkania
@@ -186,7 +191,10 @@ const LandlordPageGetFlatContainer: React.FC<LandlordPageGetFlatContainerProps> 
     const menu = (
         <Menu>
           <Menu.Item>
-            <Button onClick={handleDisplayFlatReportsButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Sprawdź aktualności</Button>
+            <Button onClick={handleDisplayFlatReportsButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Aktualności</Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button onClick={handleDisplayFlatPaymentsButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Płatności</Button>
           </Menu.Item>
           <Menu.Item>
             <Button onClick={handleEditFlatButtonClick} type="primary" style={{width: '150px', margin: "10px"}}>Edytuj mieszkanie</Button>

@@ -10,6 +10,7 @@ import usersSlice from './users/users.slice';
 import { landlordTenanciesSlice } from './landlord/tenancies/tenancies.slice';
 import { reviewsSlice } from './reviews/reviews.slice';
 import { landlordReportsSlice } from './landlord/reports/reports.slice';
+import { landlordPaymentsSlice } from './landlord/payments/payments.slice';
 
 const rootReducer = combineReducers({
 	admin: combineReducers({
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
 		flats: landlordFlatsSlice.reducer,
 		rooms: landlordRoomsSlice.reducer,
 		tenancies: landlordTenanciesSlice.reducer,
-		reports: landlordReportsSlice.reducer
+		reports: landlordReportsSlice.reducer,
+		payments: landlordPaymentsSlice.reducer
 	})
 });
 
