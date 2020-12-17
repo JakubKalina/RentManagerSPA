@@ -1,14 +1,12 @@
 import React from "react";
+import MessagePageGetConversationsContainer from "./containers/MessagePageGetConversationsContainer";
 
 const MessagePageContainer: React.FC<{}> = () => {
     // const Content = (
 
     // );
     return (
-        <div>
-            <h1>Panel z wiadomościami</h1>
-            
-        </div>
+        <MessagePageGetConversationsContainer/>
     );
 };
 

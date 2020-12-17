@@ -6,11 +6,11 @@ import { GetConversationsRequest } from './requests/getConversationsRequest';
 import { GetConversationMessagesRequest } from './requests/getConversationMessagesRequest';
 import { GetConversationMessagesResponse } from './responses/getConversationMessagesResponse';
 export const MessageApi = {
-    getConversations: (body: GetConversationsRequest): Promise<GetConversationsResponse> =>
-    requests.get(`/message/conversations`),
+    getConversations: (params: GetConversationsRequest): Promise<GetConversationsResponse> =>
+    requests.get(`/message/conversations`, params),
 
-    getConversationMessages: (body: GetConversationMessagesRequest): Promise<GetConversationMessagesResponse> =>
-    requests.get(`/message/conversation`),
+    getConversationMessages: (params: GetConversationMessagesRequest): Promise<GetConversationMessagesResponse> =>
+    requests.get(`/message/conversation`, params),
 
     sendMessage: (body: SendMessageRequest): Promise<HttpStatusCodeResponse> =>
     requests.post(`/message`, body)

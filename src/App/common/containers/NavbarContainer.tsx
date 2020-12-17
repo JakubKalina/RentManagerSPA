@@ -114,6 +114,9 @@ const NavbarContainer: React.FC<{}> = () => {
 					<Menu.Item key='/tenant/flats'>
 						<Link to='/tenant/flats'>Moje mieszkania</Link>
 					</Menu.Item>
+					<Menu.Item key='/tenant/payments'>
+						<Link to='/tenant/payments'>Opłaty</Link>
+					</Menu.Item>
 					<Menu.Item key='/tenant/messages'>
 						<Link to='/tenant/messages'>Wiadomości</Link>
 					</Menu.Item>

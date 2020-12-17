@@ -7,6 +7,8 @@ import { HttpStatusCodeResponse } from 'App/types/httpResponse.d';
 import { GetFlatResponse } from './responses/getFlatResponse';
 import { GetTenantFlatsRequest } from './requests/getTenantFlatsRequest';
 import { GetTenantFlatsResponse } from './responses/getTenantFlatsResponse';
+import { GetAdminFlatsResponse } from './responses/getAdminFlatsResponse';
+import { GetAdminFlatsRequest } from './requests/getAdminFlatsRequest';
 
 export const FlatApi = {
     getFlat: (flatId: number): Promise<GetFlatResponse> =>
@@ -20,6 +22,9 @@ export const FlatApi = {
     
     getLandlordFlats: (params: GetLandlordFlatsRequest) : Promise<GetLandlordFlatsResponse> => 
     requests.get(`/flat/landlord`, params),
+
+    getAdminFlats: (params: GetAdminFlatsRequest) : Promise<GetAdminFlatsResponse> => 
+    requests.get(`/flat/admin`, params),
 
     getTenantFlats: (params: GetTenantFlatsRequest) : Promise<GetTenantFlatsResponse> => 
     requests.get(`/flat/tenant`, params),

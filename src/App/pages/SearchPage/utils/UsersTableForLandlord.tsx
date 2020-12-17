@@ -15,7 +15,6 @@ export const renderTableColumnsForLandlord = (users: UserForGetUsersResponse[], 
     { title: 'Nazwisko', dataIndex: 'lastName' },
     { title: 'Kod wyszukiwania', dataIndex: 'searchId' },
     { title: 'Email', dataIndex: 'email' },
-    { title: 'Telefon', dataIndex: 'phoneNumber' },
 	{ title: 'Rola',
 		render: (record: UserForGetUsersResponse) => (
 			<Tag.CheckableTag checked={true} style={{marginBottom: "10px"}} >
@@ -65,7 +64,7 @@ const menuForActionDropdown = (
 
 		<Menu.Item>
 			<Button type='link'>
-				Napisz wiadomość
+				<Link to={`/messages/${record.id}/send`}>Wyślij wiadomość</Link>
 			</Button>
 		</Menu.Item>
 

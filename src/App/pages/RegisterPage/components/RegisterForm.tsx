@@ -14,13 +14,13 @@ const RegisterForm: React.FC<RegisterFormProps> = (props: RegisterFormProps) => 
 		<Form {...props}>
 
             {/* Imię */}
-            <Form.Item name='firstName' rules={registerFormRules.email}>
+            <Form.Item name='firstName' rules={registerFormRules.firstName}>
 				<Input prefix={<UserOutlined className='site-form-item-icon' />} placeholder='Imię' />
 			</Form.Item>
 
 
             {/* Nazwisko */}
-            <Form.Item name='lastName' rules={registerFormRules.email}>
+            <Form.Item name='lastName' rules={registerFormRules.lastName}>
 				<Input prefix={<UserOutlined className='site-form-item-icon' />} placeholder='Nazwisko' />
 			</Form.Item>
 
@@ -51,7 +51,7 @@ const RegisterForm: React.FC<RegisterFormProps> = (props: RegisterFormProps) => 
 
 
             {/* Rola */}
-            <Form.Item name='role' rules={registerFormRules.password}>
+            <Form.Item name='role' rules={registerFormRules.role}>
             <Radio.Group buttonStyle="outline" size="large">
                 <Radio.Button value="Tenant">Najemca</Radio.Button>
                 <Radio.Button value="Landlord">Zarządca</Radio.Button>

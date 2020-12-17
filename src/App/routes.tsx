@@ -30,9 +30,12 @@ import { default as AddReviewPage } from './pages/ReviewsPage/containers/Reviews
 import { default as LandlordPageGetFlatReports } from './pages/LandlordPage/flats/containers/LandlordPageGetFlatReportsContainer';
 import { default as LandlordPageGetFlatPayments } from './pages/LandlordPage/flats/containers/LandlordPageGetFlatPaymentsContainer';
 import { default as LandlordPageCreateFlatPayment } from './pages/LandlordPage/flats/containers/LandlordPageCreateFlatPaymentContainer';
-
+import { default as TenantPaymentsPage } from './pages/TenantPage/payments/TenantPagePaymentsContainer';
 
 import { default as MessagePage } from './pages/MessagePage/MessagePageContainer';
+import { default as ConversationMessagesPage } from './pages/MessagePage/containers/MessagePageGetConversationMessagesContainer';
+import { default as SendMessagePage } from './pages/MessagePage/containers/MessagePageSendMessageContainer';
+
 import Role from './types/role';
 
 const Routes: React.FC = () => {
@@ -92,6 +95,17 @@ const Routes: React.FC = () => {
 				exact path='/profile/change-password' 
 				component={ProfilePageChangePassword} />
 
+			<ProtectedRoute 
+			 	acceptedRoles={[Role.TENANT, Role.LANDLORD, Role.ADMIN]}
+				 exact path='/messages/:recipientId' 
+				component={ConversationMessagesPage} />
+
+			<ProtectedRoute 
+			 	acceptedRoles={[Role.TENANT, Role.LANDLORD, Role.ADMIN]}
+				 exact path='/messages/:recipientId/send' 
+				component={SendMessagePage} />
+
+
 
 
 
@@ -109,6 +123,8 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats/:flatId/reports' component={LandlordPageGetFlatReports} />
 
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/messages' component={MessagePage} />
+			
+			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/messages/:recipientId' component={ConversationMessagesPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/search' component={SearchPage} />
 			
@@ -124,11 +140,16 @@ const Routes: React.FC = () => {
 			{/* <ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats/:flatId' component={LandlordPageRooms} /> */}
 
 
-
+			
 			{/* Tenant routes*/}
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant' component={LandlordPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/messages' component={MessagePage} />
+
+			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/messages/:recipientId' component={ConversationMessagesPage} />
+
+			
+			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/payments' component={TenantPaymentsPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/search' component={SearchPage} />
 
@@ -147,6 +168,9 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin' component={LandlordPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/messages' component={MessagePage} />
+
+			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/messages/:recipientId' component={ConversationMessagesPage} />
+
 
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/search' component={SearchPage} />
 

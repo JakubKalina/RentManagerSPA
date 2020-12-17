@@ -36,14 +36,6 @@ const HomePageContainer: React.FC<{}> = () => {
 	};
 
 
-	// return (
-	// 	<div>
-	// 		<h1>Strona główna</h1>
-	// 		<Button onClick={logState}>Log Redux State</Button>
-	// 		<Button onClick={getAllCokies}>Log Document Cookies</Button>
-	// 	</div>
-	// );
-
 	if(userRole === 'Landlord')
 	{
 		return (
@@ -65,7 +57,7 @@ const HomePageContainer: React.FC<{}> = () => {
 				<Card title="System zarządzania najmem" className='home--container--card'>
 					<Card.Grid hoverable={false} style={{width: '100%', textAlign: "center"}}>
 						<p>
-							Dzięki nam wynajem mieszkania staje się o wiele protszy i przyjemniejszy.
+							Dzięki nam wynajem mieszkania staje się o wiele prostszy i przyjemniejszy.
 							<br></br>
 							<br></br> Przekonaj się sam.
 						</p>

@@ -48,13 +48,10 @@ const menuForActionDropdown = (
 		</Menu.Item>
 		<Menu.Item>
 			<Button type='link'>
-				Wyślij wiadomość
+				<Link to={`/messages/${record.id}/send`}>Wyślij wiadomość</Link>
 			</Button>
 		</Menu.Item>
 		<Menu.Item>
-			<Button type='link'>
-				Usuń konto
-			</Button>
 		</Menu.Item>
 	</Menu>
 );

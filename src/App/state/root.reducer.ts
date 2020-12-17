@@ -1,3 +1,7 @@
+import { adminFlatsSlice } from './admin/flats/flats.slice';
+import { messagesSlice } from './messages/messages.slice';
+import { tenantFlatsSlice } from './tenant/flats/flats.slice';
+import { tenantPaymentsSlice } from './tenant/payments/payments.slice';
 import { landlordRoomsSlice } from './landlord/rooms/rooms.slice';
 import { landlordFlatsSlice } from './landlord/flats/flats.slice';
 import { combineReducers } from '@reduxjs/toolkit';
@@ -15,11 +19,17 @@ import { landlordPaymentsSlice } from './landlord/payments/payments.slice';
 const rootReducer = combineReducers({
 	admin: combineReducers({
 		users: adminUsersSlice.reducer,
-		logs: adminLogsSlice.reducer
+		logs: adminLogsSlice.reducer,
+		flats: adminFlatsSlice.reducer
 	}),
 	session: sessionSlice.reducer,
 	reviews: reviewsSlice.reducer,
+	messages: messagesSlice.reducer,
 	users: usersSlice.reducer,
+	tenant: combineReducers({
+		payments: tenantPaymentsSlice.reducer,
+		flats: tenantFlatsSlice.reducer
+	}),
 	landlord: combineReducers({
 		flats: landlordFlatsSlice.reducer,
 		rooms: landlordRoomsSlice.reducer,

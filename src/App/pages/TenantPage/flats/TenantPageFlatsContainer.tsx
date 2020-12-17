@@ -1,14 +1,12 @@
 import React from "react";
+import TenantPageGetFlatsContainer from "./containers/TenantPageGetFlatsContainer";
 
 const TenantPageFlatsContainer: React.FC<{}> = () => {
     // const Content = (
 
     // );
     return (
-        <div>
-            <h1>Mieszkania najemcy</h1>
-            
-        </div>
+        <TenantPageGetFlatsContainer/>
     );
 };
 

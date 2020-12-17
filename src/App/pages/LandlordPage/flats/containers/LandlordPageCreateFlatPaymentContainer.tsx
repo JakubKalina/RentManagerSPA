@@ -124,9 +124,6 @@ const LandlordPageCreateFlatPaymentContainer: React.FC<LandlordPageCreateFlatPay
                                 placeholder="Wybierz najemce"
                                 optionFilterProp="children"
                                 onChange={handleTenantSelectChange}
-                                filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                }
                             >
                                 {tenants.map((tenant) => (
                                     <Option value={tenant.id}>{tenant.user.firstName} {tenant.user.lastName}</Option>

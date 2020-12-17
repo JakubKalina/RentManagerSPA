@@ -9,6 +9,7 @@ import StatusType from "App/types/requestStatus";
 import { renderReviewsTableColumns } from "./components/ReviewsTable";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { getUserDetails } from "App/state/users/users.thunk";
+import { Link } from "react-router-dom";
 
 interface RouteParams {
 	userId: string;
@@ -30,6 +31,16 @@ const ReviewsPageContainer: React.FC<ReviewsPageContainerProps> = ({ match}: Rev
     
 	const reviews = useSelector((state: RootState) => state.reviews.reviews);
     const reviewsStatus = useSelector((state: RootState) => state.reviews.status.getReviews);
+
+    const userRole = useSelector<RootState>(
+		(state: RootState) => {
+			let currentRole = state.session.user && state.session.user.roles
+			if(currentRole && currentRole.length > 0)
+			{
+				 return currentRole[0];
+			} else return null;
+		}
+	);
 
     useEffect(() => {
 		dispatch(getUserDetails(userId));
@@ -61,7 +72,18 @@ const ReviewsPageContainer: React.FC<ReviewsPageContainerProps> = ({ match}: Rev
 								<Avatar size={64} icon={<UserOutlined />} />
 							</Row>
 							<Row>
-								<Tag.CheckableTag checked={true} style={{marginTop: "10px"}} >{user?user.role:""}</Tag.CheckableTag>
+                            <Tag.CheckableTag checked={true} style={{marginBottom: "10px", marginTop: "10px"}} >
+                            {
+                                user && user.role==='Landlord'?'Zarządca':""
+                            }
+                            {
+                                user && user.role==='Administrator'?'Administrator':""
+                            }
+                            {
+                                user && user.role==='Tenant'?'Najemca':""
+                            }
+                            </Tag.CheckableTag>
+								{/* <Tag.CheckableTag checked={true} style={{marginTop: "10px"}} >{user?user.role:""}</Tag.CheckableTag> */}
 							</Row>
                         </Col>
 
@@ -107,10 +129,16 @@ const ReviewsPageContainer: React.FC<ReviewsPageContainerProps> = ({ match}: Rev
 
 					<Card.Grid style={{width: '100%', textAlign: "center"}}>
 
-                        <Button  type="primary" style={{width: '200px', margin: "10px"}}>Napisz wiadomość</Button>
-                       
-                        <Button  type="primary" style={{width: '200px', margin: "10px"}}>Dodaj do mieszkania</Button>
+                        <Button  type="primary" style={{width: '200px', margin: "10px"}}>
+                        <Link to={`/messages/${userId}/send`}>Wyślij wiadomość</Link>
+                        </Button>
+                        {userRole && user && userRole === 'Landlord'?
 
+                            <Button  type="primary" style={{width: '200px', margin: "10px"}}>
+                                <Link to={`/landlord/tenants/add/${user.id}`}>Dodaj do mieszkania</Link>
+                            </Button>
+                            : null
+                        }
 					</Card.Grid>
 				</Card>
                 } 
