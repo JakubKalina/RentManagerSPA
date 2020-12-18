@@ -136,10 +136,6 @@ const Routes: React.FC = () => {
 
 			<ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/tenancy/:tenancyId/update' component={LandlordPageUpdateTenancy} />
 
-			{/* Dokończyć poniższe */}
-			{/* <ProtectedRoute acceptedRoles={[Role.LANDLORD]} exact path='/landlord/flats/:flatId' component={LandlordPageRooms} /> */}
-
-
 			
 			{/* Tenant routes*/}
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant' component={LandlordPage} />
@@ -147,17 +143,12 @@ const Routes: React.FC = () => {
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/messages' component={MessagePage} />
 
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/messages/:recipientId' component={ConversationMessagesPage} />
-
-			
+		
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/payments' component={TenantPaymentsPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/search' component={SearchPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/profile' component={ProfilePage} />
-
-			{/* <ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/profile/update' component={ProfilePageUpdate} />
-
-			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/profile/change-password' component={ProfilePageChangePassword} /> */}
 			
 			<ProtectedRoute acceptedRoles={[Role.TENANT]} exact path='/tenant/reports' component={ReportsPage} />
 
@@ -171,14 +162,9 @@ const Routes: React.FC = () => {
 
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/messages/:recipientId' component={ConversationMessagesPage} />
 
-
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/search' component={SearchPage} />
 
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/profile' component={ProfilePage} />
-
-			{/* <ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/profile/update' component={ProfilePageUpdate} />
-
-			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/profile/change-password' component={ProfilePageChangePassword} /> */}
 
 			<ProtectedRoute acceptedRoles={[Role.ADMIN]} exact path='/admin/flats' component={AdminPageFlats} />
 

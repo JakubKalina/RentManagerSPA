@@ -7,11 +7,7 @@ import { createFlatFormRules } from '../utils/CreateFlatFormRules';
 import { updateFlatFormRules } from '../utils/UpdateFlatFormRules';
 
 interface CreateFlatFormProps extends FormProps {
-// 	description: string;
-// 	homeAddress: string;
-// 	city: string;
-// 	postalCode: string;
-// 
+
 }
 
 const UpdateFlatForm: React.FC<CreateFlatFormProps> = (props: CreateFlatFormProps) => {

@@ -1,11 +1,8 @@
-// Thrid party imports
 import React from 'react';
 import { connect, DispatchProp } from 'react-redux';
 import { Route, Redirect, RouteChildrenProps } from 'react-router-dom';
 
-// Routes
 
-// Local imports
 import LoadingScreen from './LoadingScreen';
 import agent from 'App/api/agent/agent';
 import { RootState } from 'App/state/root.reducer';
@@ -13,9 +10,7 @@ import { authenticationSuccess, getUserDetailsSuccess } from 'App/state/session/
 import { mapStateToProps } from 'App/state/utils/connect';
 import Role from 'App/types/role';
 
-// Additional styling
 
-// Component
 interface ProtectedRouteState {
 	isLoading: boolean;
 	isUserAuthorized: boolean;
@@ -47,7 +42,6 @@ class ProtectedRoute extends React.Component<ProtectedRouteProps, ProtectedRoute
 
 	componentDidMount() {
 		if (!this.state.isUserAuthorized || !this.state.isUserAuthenticated) {
-			// [DEV]: usunac token z local Storage | przed wypusczeniem do produkcji
 			const token = localStorage.getItem('token');
 
 			if (token) {

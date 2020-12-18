@@ -79,7 +79,6 @@ export function confirmPaymentFinish(paymentId: number, payments: getFlatPayment
 
 	let handleSuccess: () => void = () => {
 		history.push(`/landlord/flats/${flatId}`);
-		//dispatch(getTenancies(Number(flatId)));
     };
 
     let handleError: (errorMessages: string[]) => void = (errors: string[]) => {

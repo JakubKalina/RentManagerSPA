@@ -16,9 +16,7 @@ type MouseClickEvent = (event: React.MouseEvent<HTMLElement, MouseEvent>) => voi
 
 const NavbarContainer: React.FC<{}> = () => {
 
-	// const userIsLoggedIn = useSelector<RootState>(
-	// 	(state: RootState) => !!(state.session.info && state.session.info.token)
-	// );
+
 	const history = useHistory();
 
 

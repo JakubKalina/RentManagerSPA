@@ -24,7 +24,6 @@ const TenantPageGetFlatsContainer: React.FC<{}> = () => {
 	type FinishFormType = (values: Store) => void;
 
 
-    // zmienić
 	const flats = useSelector((state: RootState) => state.tenant.flats.flats);
 	const flatsStatus = useSelector((state: RootState) => state.tenant.flats.status);
 
@@ -35,7 +34,6 @@ const TenantPageGetFlatsContainer: React.FC<{}> = () => {
 
 	useEffect(() => {
 
-        // zmienić
 		dispatch(getFlats(defaultPageQueryParams));
 
 		return () => {
@@ -47,7 +45,6 @@ const TenantPageGetFlatsContainer: React.FC<{}> = () => {
 		dispatch(
 
 
-            // zmienić
 			getFlats({
 				...defaultPageQueryParams,
 				pageNumber: pagination.current || 1,

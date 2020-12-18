@@ -83,7 +83,6 @@ const ReviewsPageContainer: React.FC<ReviewsPageContainerProps> = ({ match}: Rev
                                 user && user.role==='Tenant'?'Najemca':""
                             }
                             </Tag.CheckableTag>
-								{/* <Tag.CheckableTag checked={true} style={{marginTop: "10px"}} >{user?user.role:""}</Tag.CheckableTag> */}
 							</Row>
                         </Col>
 

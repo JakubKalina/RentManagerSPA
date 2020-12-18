@@ -74,14 +74,6 @@ const LandlordPageUpdateTenancyContainer: React.FC<LandlordPageUpdateTenancyCont
         };
         
 
-        // dispatch(
-		// 	updateTenancy({
-        //         id: Number(tenancyId),
-        //         startDate: new Date(),
-        //         endDate: new Date(),
-        //         deposit: value.deposit
-		// 	}, handleSuccess, handleError)
-        // );
 
         dispatch(
 			updateTenancy(value, handleSuccess, handleError)

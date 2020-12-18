@@ -61,12 +61,8 @@ const sessionSlice = createSlice({
 			state.status.authentication = LOADING;
 		},
 		authenticationSuccess: (state: SessionState, action: PayloadAction<LoginResponse>) => {
-			// TODO: implementacja refresh tokena na HttpOnly
-			// setCookie(REFRESH_TOKEN_COOKIE_NAME, action.payload.refresh_token, 40);
 			state.status.authentication = SUCCESS;
 			state.info = action.payload;
-
-			// TODO usunac token z local Storage
 			localStorage.setItem('token', action.payload.token);
 		},
 		authenticationFailure: (state: SessionState, action: PayloadAction<string[]>) => {
@@ -100,8 +96,6 @@ const sessionSlice = createSlice({
 			state.user = null;
 			state.error = null;
 			state.info = null;
-
-			// TODO usunac token z local Storage
 			localStorage.removeItem('token');
 		},
 

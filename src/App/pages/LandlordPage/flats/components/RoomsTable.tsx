@@ -38,11 +38,6 @@ const menuForActionDropdown = (
 	flatId: number,
 	dispatch: Dispatch<any>) => (
 	<Menu>
-		{/* <Menu.Item>
-			<Button type='link'>
-				<Link to={`/landlord/flats/${record.id}/update` }>Edycja</Link>
-			</Button>
-		</Menu.Item> */}
 		<Menu.Item>
 			<Button type='link' onClick={confirmRoomDelete(record.id, rooms, flatId, dispatch)}>
 				Usuń

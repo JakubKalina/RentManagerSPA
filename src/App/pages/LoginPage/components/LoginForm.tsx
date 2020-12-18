@@ -4,12 +4,10 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { FormProps } from 'antd/lib/form/Form';
 import './LoginForm.less';
 import { loginFormRules } from '../utils/loginPageFormRules';
-import { useTranslation } from 'react-i18next';
 
 interface LoginFormProps extends FormProps {}
 
 const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
-	const { t } = useTranslation();
 
 	return (
 		<Form {...props}>

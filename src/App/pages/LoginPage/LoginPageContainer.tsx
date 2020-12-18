@@ -25,24 +25,10 @@ const LoginPageContainer: React.FC<LoginPageContainerProps> = ({ history }: Logi
 	const [loginError, setLoginError] = useState<string[] | boolean>(false);
 	const status = useSelector((state: RootState) => state.session.status.authentication);
 
-
-
-
-
-
-
-
-	// Do usunięcia
 	const formInitialValues = {
 		email: 'kalinakuba6@gmail.com',
 		password: 'Pass123!'
 	};
-
-
-
-	
-
-
 	
 
 	const signInHandler: FinishFormType = (values: LoginRequest) => {

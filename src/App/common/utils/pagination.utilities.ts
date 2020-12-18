@@ -7,14 +7,7 @@ export const defaultPageQueryParams: IPageQueryParams = {
 	query: ''
 };
 
-/**
- * Funkcja generująca callback `onChange` dla wszystkich tabel od ant.design.
- *
- * Parametry:
- *  - `previousPageQueryParams` - poprzedni obiekt danych paginacji. Może to być obiekt pobrany z `useSelector`a,
- *  - `dispatchCallback` - funkcja jaka się wykona z nowo utworzonym obiektem paginacji.
- * Najlepiej tutaj podać dispatch z getem na wszytkie encje. W parametrze otrzyma nowy obiekt paginacji.
- */
+
 export const onPaginationChange = (
 	previousPageQueryParams: IPageQueryParams,
 	dispatchCallback: (newPageQueryParams: IPageQueryParams) => void

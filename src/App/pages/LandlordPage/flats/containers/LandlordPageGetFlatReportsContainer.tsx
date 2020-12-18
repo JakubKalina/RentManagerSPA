@@ -136,11 +136,7 @@ const LandlordPageGetFlatReportsContainer: React.FC<LandlordPageGetFlatReportsCo
 
 	return (
 		<>
-			{/* {flatReportsStatus.deleteReport === StatusType.SUCCESS &&
-			notification.success({
-				message: 'Sukces',
-				description: `Pomyślnie usunięto powiadomienie`
-			})} */}
+
 			<Row className='add-new-flat--container' align="middle" justify="center" >
 
 

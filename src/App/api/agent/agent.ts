@@ -3,10 +3,7 @@ import { RoomApi } from './../endpoints/room/roomApi';
 import { ReviewApi } from './../endpoints/review/reviewApi';
 import { ReportApi } from './../endpoints/report/reportApi';
 import { MessageApi } from './../endpoints/message/messageApi';
-import { FlatInformationApi } from './../endpoints/flatInformation/flatInformationApi';
 import { FlatApi } from './../endpoints/flat/flatApi';
-import { DocumentApi } from './../endpoints/document/documentApi';
-import { AddressApi } from './../endpoints/address/addressApi';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 import { AccountApi } from '../endpoints/account/accountApi';
@@ -61,10 +58,7 @@ export default {
 	Auth: AuthApi,
 	Logs: LogsApi,
 	Admin: AdminApi,
-	Address: AddressApi,
-	Document: DocumentApi,
 	Flat: FlatApi,
-	FlatInformation: FlatInformationApi,
 	Message: MessageApi,
 	Payment: PaymentApi,
 	Report: ReportApi,

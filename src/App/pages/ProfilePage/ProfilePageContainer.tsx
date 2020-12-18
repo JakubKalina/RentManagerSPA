@@ -44,7 +44,6 @@ const ProfilePageContainer: React.FC<{}> = () => {
 					</Card.Grid>
 
                     <Card.Grid hoverable={false} style={{width: '100%', textAlign: "center"}}>
-                        {/* <Tag.CheckableTag checked={true} style={{marginBottom: "10px"}} >{user?user.roles[0]:""}</Tag.CheckableTag> */}
                         <Tag.CheckableTag checked={true} style={{marginBottom: "10px", marginTop: "10px"}} >
                             {
                                 user && user.roles[0]==='Landlord'?'Zarządca':""

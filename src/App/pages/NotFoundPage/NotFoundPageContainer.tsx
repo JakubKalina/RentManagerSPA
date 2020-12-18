@@ -13,7 +13,7 @@ const NotFoundPageContainer: React.FC<NotFoundPageContainerProps> = ({ history }
 		<Result
 			status="warning"
 			title='404'
-			subTitle={'Niestety, nie udało się znaleźć tej strony'}
+			subTitle={'Nie udało się znaleźć tej strony'}
 			extra={
 				<Button type='primary' onClick={buttonGoBackHomeOnClick}>
 					{'Wróć do strony głównej'}
